@@ -4,3 +4,4 @@ Created by:
 * Cameron Clark
 * Patrick Hernandez
 * Brandon Martin
+* David Hill
