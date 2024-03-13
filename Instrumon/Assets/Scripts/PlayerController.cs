@@ -1,46 +1,27 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Collections.Specialized;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
     public float moveSpeed;
 
-    private bool isMoving;
+    float speedX, speedY;
 
-    private Vector2 input;
+    Rigidbody2D rb;
 
-    private void Update() 
+    private void Start()
     {
-        if (!isMoving)
-        {
-            input.x = Input.GetAxisRaw("Horizontal");
-            input.y = Input.GetAxisRaw("Vertical");
-
-            if (input != Vector2.zero) 
-            {
-                var targetPos = transform.position;
-                targetPos.x += input.x;
-                targetPos.y += input.y;
-
-                StartCoroutine(Move(targetPos));
-            }
-
-        }
-
+        rb = GetComponent<Rigidbody2D>();
     }
 
-    IEnumerator Move(Vector3 targetPos) 
-    {
-        isMoving = true;
-        while ((targetPos - transform.position).sqrMagnitude > Mathf.Epsilon)
-        { 
-            transform.position = Vector3.MoveTowards(transform.position, targetPos, moveSpeed * Time.deltaTime);
-            yield return null;
-        }
-        transform.position = targetPos;
 
-        isMoving = false;
+    private void Update()
+    {
+        speedX = Input.GetAxisRaw("Horizontal") * moveSpeed;
+        speedY = Input.GetAxisRaw("Vertical") * moveSpeed;
+        rb.velocity = new Vector2 (speedX, speedY);
     }
+
+
 }
