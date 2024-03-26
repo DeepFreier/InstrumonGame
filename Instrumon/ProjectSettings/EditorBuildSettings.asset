@@ -9,7 +9,7 @@ EditorBuildSettings:
     path: Assets/Scenes/Main Menu.unity
     guid: 8c58cdc4d3e1fb64898108d4c0c68851
   - enabled: 1
-    path: Assets/Scenes/WorldLayer-Brass.unity
+    path: Assets/Scenes/WorldLayer-Brass (w pause menu)).unity
     guid: 26205dfac41dd2240a8776d4ec6ba3ee
   - enabled: 1
     path: Assets/Scenes/BattleScene.unity
