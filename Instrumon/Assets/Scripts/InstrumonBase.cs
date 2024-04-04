@@ -12,12 +12,40 @@ public class InstrumonBase : ScriptableObject
     [SerializeField] string description;
 
     [SerializeField] Sprite frontSprite;
-    [SerializeField] InstrumonType type1;
+    [SerializeField] InstrumonType type;
 
     //Instrumon stats
     [SerializeField] int maxHP;
     [SerializeField] int attack;
     [SerializeField] int speed;
+
+    public string Name {
+        get { return name; }
+    }
+    public string Description {
+        get { return description; }
+    }
+
+    public Sprite FrontSprite {
+        get { return frontSprite; }
+    }
+
+    public InstrumonType Type {
+        get { return type; }
+    }
+
+    public int MaxHP {
+        get { return maxHP; }
+    }
+
+    public int Attack {
+        get { return attack; }
+    }
+
+    public int Speed {
+        get { return speed; }
+    }
+
 }
 
 public enum InstrumonType 
