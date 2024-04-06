@@ -5,7 +5,7 @@ using UnityEngine.UIElements;
 
 public class PlayerController : MonoBehaviour
 {
-    
+
     public float moveSpeed;
 
     private bool isMoving;
@@ -20,6 +20,8 @@ public class PlayerController : MonoBehaviour
 
     public LayerMask interactableLayer;
 
+    public LayerMask teleportLayer;
+
     //Calls the function inside when the script is loaded
     private void Awake()
     {
@@ -31,7 +33,7 @@ public class PlayerController : MonoBehaviour
     public void HandleUpdate()
     {
         //Checks if the player is moving
-        if(!isMoving)
+        if (!isMoving)
         {
             //Stores the input from the player into the input variable for later use
             input.x = Input.GetAxisRaw("Horizontal");
@@ -60,7 +62,15 @@ public class PlayerController : MonoBehaviour
                     //Moves the player using the targetPos variable
                     StartCoroutine(Move(targetPos));
                 }
-                
+                if (isTeleport(targetPos))
+                {
+                    var collider = Physics2D.OverlapCircle(targetPos, .2f, teleportLayer);
+                    if (collider != null)
+                    {
+                        collider.GetComponent<Teleporter>()?.Teleport();
+                    }
+                }
+
             }
         }
         //Tells the animator that the player is moving
@@ -71,6 +81,8 @@ public class PlayerController : MonoBehaviour
             Interact();
         }
     }
+
+
 
     //The method for the interact key.
     private void Interact()
@@ -91,6 +103,18 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    private bool isTeleport(Vector3 targetPos)
+    {
+        if (Physics2D.OverlapCircle(targetPos, 0.2f, teleportLayer) != null)
+        {
+            return true;
+        }
+
+        return false;
+    }
+
+    
+
 
     IEnumerator Move(Vector3 targetPos)
     {
@@ -110,6 +134,8 @@ public class PlayerController : MonoBehaviour
         //When the player is no longer moving the script is told the player is no longer moving
         isMoving = false;
     }
+
+    
 
     private bool IsWalkable(Vector3 targetPos)
     {
