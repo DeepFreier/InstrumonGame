@@ -24,8 +24,8 @@ public class BattleController : MonoBehaviour
     public TextMeshProUGUI oppCurrentHealthText;
     public TextMeshProUGUI oppTotalHealthText;
 
-    public static Instrumon[] playerParty;
-    public Instrumon playerCurrentMon = playerParty[0];
+    //public static Instrumon[] playerParty;
+    //public Instrumon playerCurrentMon = playerParty[0];
     public Sprite playerSprite;
     private String playerName = "Trumpig";
     private int playerCurrentHP = 80;
@@ -34,8 +34,8 @@ public class BattleController : MonoBehaviour
     private int PlayerMonSpd = 5;
     //public Attack playerSelectedAtk;
 
-    public static Instrumon[] oppParty;
-    public Instrumon oppCurrentMon = oppParty[0];
+    //public static Instrumon[] oppParty;
+    //public Instrumon oppCurrentMon = oppParty[0];
     public int oppCurrentIndex = 0;
     public Sprite oppSprite;
     private String oppName = "Cymbalisk";
@@ -109,7 +109,7 @@ public class BattleController : MonoBehaviour
     {
 
     }
-
+    /*
     public void oppSwitch()
     {
         oppCurrentIndex += 1;
@@ -122,7 +122,8 @@ public class BattleController : MonoBehaviour
             oppCurrentMon = oppParty[oppCurrentIndex];
         }
     }
-    
+    */
+    /*
     public void executeTurn()
     {
         if (playerFirst())
@@ -134,7 +135,7 @@ public class BattleController : MonoBehaviour
             }
             else
             {
-                oppSwitch();
+                //oppSwitch();
             }
 
         }
@@ -151,7 +152,8 @@ public class BattleController : MonoBehaviour
             }
         }
     }
-
+    */
+    /*
     public bool playerFirst()
     {
         if (playerCurrentMon.Speed >= oppCurrentMon.Speed)
@@ -163,6 +165,7 @@ public class BattleController : MonoBehaviour
             return false;
         }
     }
+    */
 
     public int calcDamage(int totalHP, int atkStat, int atkPow)
     {
