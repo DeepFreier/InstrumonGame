@@ -14,6 +14,8 @@ public class BattleController : MonoBehaviour
     public TextMeshProUGUI playerCurrentHealthText;
     public TextMeshProUGUI playerTotalHealthText;
 
+    private System.Random random = new System.Random();
+
     public SpriteRenderer oppSpriteHolder;
     public TextMeshProUGUI oppNameText;
     public Image oppHealthBar;
@@ -22,13 +24,19 @@ public class BattleController : MonoBehaviour
     public TextMeshProUGUI oppCurrentHealthText;
     public TextMeshProUGUI oppTotalHealthText;
 
+    public static Instrumon[] playerParty;
+    public Instrumon playerCurrentMon = playerParty[0];
     public Sprite playerSprite;
     private String playerName = "Trumpig";
     private int playerCurrentHP = 80;
     private int playerMonHP = 90;
     private int playerMonAtk = 70;
     private int PlayerMonSpd = 5;
+    //public Attack playerSelectedAtk;
 
+    public static Instrumon[] oppParty;
+    public Instrumon oppCurrentMon = oppParty[0];
+    public int oppCurrentIndex = 0;
     public Sprite oppSprite;
     private String oppName = "Cymbalisk";
     private int oppMonHP = 120;
@@ -58,6 +66,7 @@ public class BattleController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        /*
         if (Input.GetKeyDown(KeyCode.Return))
         {
             takeDamage(calcDamage(playerMonHP, 50, 30));
@@ -75,11 +84,89 @@ public class BattleController : MonoBehaviour
         {
             dealDamage(10);
         }
+        */
+    }
+    /* This will be fully implemented after adjustments to the Instrumon class
+    public void oppTurn()
+    {
+        int randVal = oppCurrentMon.moves.Length;
+        Move selMove = oppCurrentMon.moves[random.Next(0, randVal)];
+        float dmgVal = calcDamage(oppCurrentMon.MaxHP, oppCurrentMon.Attack, selMove.Power);
+        takeDamage(dmgVal);
+    }
+    */
+    public void winBattle()
+    {
+
+    }
+
+    public void playerSwitch()
+    {
+
+    }
+    
+    public void playerDeathSwitch()
+    {
+
+    }
+
+    public void oppSwitch()
+    {
+        oppCurrentIndex += 1;
+        if (oppCurrentIndex > oppParty.Length - 1)
+        {
+            winBattle();
+        }
+        else
+        {
+            oppCurrentMon = oppParty[oppCurrentIndex];
+        }
+    }
+    
+    public void executeTurn()
+    {
+        if (playerFirst())
+        {
+            //player deals damage based on move picked
+            if (oppCurrentHealth > 0)
+            {
+                //execute oppTurn()
+            }
+            else
+            {
+                oppSwitch();
+            }
+
+        }
+        else
+        {
+            //execute oppTurn()
+            if (playerCurrentHealth > 0)
+            {
+                //player deals damage
+            }
+            else
+            {
+                playerDeathSwitch();
+            }
+        }
+    }
+
+    public bool playerFirst()
+    {
+        if (playerCurrentMon.Speed >= oppCurrentMon.Speed)
+        {
+            return true;
+        }
+        else
+        {
+            return false;
+        }
     }
 
     public int calcDamage(int totalHP, int atkStat, int atkPow)
     {
-        return Math.Abs(atkStat + atkPow - totalHP/2);
+        return (int)Math.Ceiling((decimal)(Math.Abs(atkStat + atkPow - totalHP / 2)));
     }
 
     public void takeDamage(float damage)
@@ -125,21 +212,14 @@ public class BattleController : MonoBehaviour
         oppHealthBar.fillAmount = oppCurrentHealth / oppTotalHealth;
         oppCurrentHealthText.text = oppCurrentHealth.ToString();
     }
-        public void OnAttackButton()
+    public void OnAttackButton()
     {
 
     }
 
-    public void OnAttackSelected(int attackPow)
+    public void OnAttackSelected()
     {
-        if (PlayerMonSpd > OpponentMonSpd)
-        {
-
-        }
-        else
-        {
-            
-        }
+        
     }
 
     public void OnMonButton()
