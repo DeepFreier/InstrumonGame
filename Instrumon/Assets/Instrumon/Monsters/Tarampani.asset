@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d115aa147e1e63c49829a0bab20a559c, type: 3}
+  m_Name: Tarampani
+  m_EditorClassIdentifier: 
+  instrumonName: Tarampani
+  description: Tarampani are extremely stealthy hunters, often hiding in dark corners
+    or in tall grass. Tarampani like to surprise its prey and use it's mallet-like
+    legs to attack.
+  frontSprite: {fileID: 0}
+  type: 2
+  maxHP: 45
+  attack: 50
+  speed: 60

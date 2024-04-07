@@ -14,7 +14,7 @@ public class InstrumonBase : ScriptableObject
     [SerializeField] Sprite frontSprite;
     [SerializeField] InstrumonType type;
 
-    //Instrumon stats
+    //Instrumon base stats are created to be assigned to the monster.
     [SerializeField] int maxHP;
     [SerializeField] int attack;
     [SerializeField] int speed;
@@ -48,6 +48,7 @@ public class InstrumonBase : ScriptableObject
 
 }
 
+//Lists all possible Instrumon typings
 public enum InstrumonType 
 {
     String,
