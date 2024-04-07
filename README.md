@@ -6,7 +6,7 @@ Created by:
 * Brandon Martin
 * David Hill
 
-## Compiling:
+## Compiling
 We probably won't have to compile anything until the very end because Unity allows for previewing in the editor,
 but here are the steps to compile the final product in Unity.
 * Click File > Build Settings
