@@ -9,6 +9,8 @@ public class GameController : MonoBehaviour
 {
     [SerializeField] PlayerController playerController;
 
+    
+
     GameState state;
 
     private void Start()
