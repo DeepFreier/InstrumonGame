@@ -2,6 +2,7 @@ using JetBrains.Annotations;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 /// <summary>
@@ -49,6 +50,12 @@ public class MenuManager : MonoBehaviour
                 Time.timeScale = 0f;  // Pause the game
                 playerController.enabled = false;  // Disable player movement
                 animator.enabled = false;  // Disable animator
+            }
+            if (SceneManager.GetActiveScene().buildIndex == 0)
+            {
+                Time.timeScale = 1f;  // Resume the game
+                playerController.enabled = true;  // Enable player movement
+                animator.enabled = true;  // Enable animator
             }
             else
             {
