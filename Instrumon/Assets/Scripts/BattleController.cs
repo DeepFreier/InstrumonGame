@@ -52,13 +52,17 @@ public class BattleController : MonoBehaviour
 
     // Start is called before the first frame update
     void Start()
-    {
+    {   
+        //Displays the right things on screen at the start of battle for the player
+
         //playerSpriteHolder.sprite = playerSprite;
         playerNameText.text = playerName.ToString();
         playerCurrentHealth = playerCurrentHP;
         playerTotalHealth = playerMonHP;
         takeDamage(0);
         playerTotalHealthText.text = playerMonHP.ToString();
+
+        //... and the opponent
 
         //oppSpriteHolder.sprite = oppSprite;
         oppNameText.text = oppName.ToString();
@@ -75,43 +79,31 @@ public class BattleController : MonoBehaviour
 
     }
 
+    //is called when all of the opponent's mons die
     public void winBattle()
     {
 
     }
 
+    //is called when all of the player's mons die
+    public void loseBattle()
+    {
+
+    }
+
+    //is called when player voluntarily switches mons
     public void playerSwitch(int monIndex)
     {
 
     }
     
+    //is called when player's mon dies
     public void playerDeathSwitch()
     {
         
     }
-
-    public void oppTurn()
-    {
-        int randVal = oppCurrentMon.Moves.Count;
-        Move selMove = oppCurrentMon.Moves[random.Next(0, randVal)];
-        float dmgVal = calcDamage(oppCurrentMon.MaxHP, oppCurrentMon.Attack, selMove.Base.Power);
-        takeDamage(dmgVal);
-    }
-
-    public void oppSwitch()
-    {
-        oppCurrentIndex += 1;
-        if (oppCurrentIndex > oppParty.Length - 1)
-        {
-            winBattle();
-        }
-        else
-        {
-            oppCurrentMon = oppParty[oppCurrentIndex];
-        }
-    }
     
-    
+    //is called when the player chooses a move to use
     public void executeTurn(int attackIndex)
     {
         if (playerFirst())
@@ -119,7 +111,7 @@ public class BattleController : MonoBehaviour
             //float dmgVal = calcDamage(oppCurrentMon.MaxHP, playerCurrentMon.Attack, playerCurrentMon.Moves[attackIndex];
             //dealDamage(dmgVal);
 
-            if (oppCurrentHealth > 0)
+            if (oppCurrentHealth > 0) //if the opp mon dies, force a switch
             {
                 oppTurn();
             }
@@ -133,7 +125,7 @@ public class BattleController : MonoBehaviour
         {
             oppTurn();
 
-            if (playerCurrentHealth > 0)
+            if (playerCurrentHealth > 0) //if the player mon dies, force a switch
             {
                 //float dmgVal = calcDamage(oppCurrentMon.MaxHP, playerCurrentMon.Attack, playerCurrentMon.Moves[attackIndex];
                 //dealDamage(dmgVal);
@@ -144,8 +136,32 @@ public class BattleController : MonoBehaviour
             }
         }
     }
-    
-    
+
+    //is called by execute turn depending on who attacks first according to
+    //playerFirst()
+    public void oppTurn()
+    {
+        int randVal = oppCurrentMon.Moves.Count;
+        Move selMove = oppCurrentMon.Moves[random.Next(0, randVal)];
+        float dmgVal = calcDamage(oppCurrentMon.MaxHP, oppCurrentMon.Attack, selMove.Base.Power);
+        takeDamage(dmgVal);
+    }
+
+    //is called when an opponent mon dies
+    public void oppSwitch()
+    {
+        oppCurrentIndex += 1;
+        if (oppCurrentIndex > oppParty.Length - 1)
+        {
+            winBattle();
+        }
+        else
+        {
+            oppCurrentMon = oppParty[oppCurrentIndex];
+        }
+    }
+
+    //returns a bool for if the player or opponent goes first
     public bool playerFirst()
     {
         if (playerCurrentMon.Speed >= oppCurrentMon.Speed)
@@ -158,12 +174,13 @@ public class BattleController : MonoBehaviour
         }
     }
     
-
+    //damage value calc
     public int calcDamage(int totalHP, int atkStat, int atkPow)
     {
         return (int)Math.Ceiling((decimal)(Math.Abs(atkStat + atkPow - totalHP / 2)));
     }
 
+    //damage done to player
     public void takeDamage(float damage)
     {
         playerCurrentHealth -= damage;
@@ -175,6 +192,7 @@ public class BattleController : MonoBehaviour
         playerCurrentHealthText.text = playerCurrentHealth.ToString();
     }
 
+    //damage done to opponent
     public void dealDamage(float damage)
     {
         oppCurrentHealth -= damage;
@@ -186,6 +204,7 @@ public class BattleController : MonoBehaviour
         oppCurrentHealthText.text = oppCurrentHealth.ToString();
     }
 
+    //heal done to player
     public void healDamage(float heal)
     {
         playerCurrentHealth += heal;
@@ -197,6 +216,7 @@ public class BattleController : MonoBehaviour
         playerCurrentHealthText.text = playerCurrentHealth.ToString();
     }
 
+    //heal done to opponent
     public void healOppDamage(float heal)
     {
         oppCurrentHealth += heal;
@@ -208,6 +228,7 @@ public class BattleController : MonoBehaviour
         oppCurrentHealthText.text = oppCurrentHealth.ToString();
     }
 
+    //OnAttack1-4() passes the index of the attack to the turn executer
     public void OnAttack1()
     {
         executeTurn(0);
@@ -228,6 +249,7 @@ public class BattleController : MonoBehaviour
         executeTurn(3);
     }
 
+    //OnMon1-4() passes the index of the mon to switch to to the mon switcher
     public void OnMon1()
     {
         playerSwitch(0);
@@ -248,6 +270,7 @@ public class BattleController : MonoBehaviour
         playerSwitch(3);
     }
 
+    //extra functions in case needed for each main button press
     public void OnAttackButton()
     {
 
