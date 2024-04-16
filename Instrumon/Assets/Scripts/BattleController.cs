@@ -27,21 +27,20 @@ public class BattleController : MonoBehaviour
     public TextMeshProUGUI oppTotalHealthText;
 
     //player variables
-    public static Instrumon[] playerParty;
-    public static Instrumon playerCurrentMon; // = playerParty[0];
-    public Sprite playerSprite; //= playerCurrentMon.Base.FrontSprite;
+    public static List<Instrumon> playerParty;
+    public static Instrumon playerCurrentMon = playerParty[0];
+    public Sprite playerSprite = playerCurrentMon.Base.FrontSprite;
     private String playerName = "Trumpig";
     private int playerCurrentHP = 80;
     private int playerMonHP = 90;
     private int playerMonAtk = 70;
     private int PlayerMonSpd = 5;
-    //public Move playerSelectedAtk;
     
     //cpu variables
-    public static Instrumon[] oppParty;
-    public static Instrumon oppCurrentMon; // = oppParty[0];
+    public static List<Instrumon> oppParty;
+    public static Instrumon oppCurrentMon = oppParty[0];
     public int oppCurrentIndex = 0;
-    public Sprite oppSprite; //= oppCurrentMon.Base.FrontSprite;
+    public Sprite oppSprite = oppCurrentMon.Base.FrontSprite;
     private String oppName = "Cymbalisk";
     private int oppMonHP = 120;
     private int oppMonAtk = 50;
@@ -151,7 +150,7 @@ public class BattleController : MonoBehaviour
     public void oppSwitch()
     {
         oppCurrentIndex += 1;
-        if (oppCurrentIndex > oppParty.Length - 1)
+        if (oppCurrentIndex > oppParty.Count - 1)
         {
             winBattle();
         }
