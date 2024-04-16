@@ -6,6 +6,7 @@ using UnityEngine.UI;
 using TMPro;
 public class BattleController : MonoBehaviour
 {
+    //player visual variables
     public SpriteRenderer playerSpriteHolder;
     public TextMeshProUGUI playerNameText;
     public Image playerHealthBar;
@@ -16,6 +17,7 @@ public class BattleController : MonoBehaviour
 
     private System.Random random = new System.Random();
 
+    //cpu visual variables
     public SpriteRenderer oppSpriteHolder;
     public TextMeshProUGUI oppNameText;
     public Image oppHealthBar;
@@ -24,24 +26,28 @@ public class BattleController : MonoBehaviour
     public TextMeshProUGUI oppCurrentHealthText;
     public TextMeshProUGUI oppTotalHealthText;
 
-    //public static Instrumon[] playerParty;
-    //public Instrumon playerCurrentMon = playerParty[0];
-    public Sprite playerSprite;
+    //player variables
+    public static Instrumon[] playerParty;
+    public static Instrumon playerCurrentMon; // = playerParty[0];
+    public Sprite playerSprite = playerCurrentMon.Base.FrontSprite;
     private String playerName = "Trumpig";
     private int playerCurrentHP = 80;
     private int playerMonHP = 90;
     private int playerMonAtk = 70;
     private int PlayerMonSpd = 5;
-    //public Attack playerSelectedAtk;
-
-    //public static Instrumon[] oppParty;
-    //public Instrumon oppCurrentMon = oppParty[0];
+    //public Move playerSelectedAtk;
+    
+    //cpu variables
+    public static Instrumon[] oppParty;
+    public static Instrumon oppCurrentMon; // = oppParty[0];
     public int oppCurrentIndex = 0;
-    public Sprite oppSprite;
+    public Sprite oppSprite = oppCurrentMon.Base.FrontSprite;
     private String oppName = "Cymbalisk";
     private int oppMonHP = 120;
     private int oppMonAtk = 50;
     private int OpponentMonSpd = 4;
+
+    //button variables
 
 
     // Start is called before the first frame update
@@ -66,50 +72,32 @@ public class BattleController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        /*
-        if (Input.GetKeyDown(KeyCode.Return))
-        {
-            takeDamage(calcDamage(playerMonHP, 50, 30));
-        }
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            healDamage(5);
-        }
 
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            healOppDamage(10);
-        }
-        if (Input.GetKeyDown(KeyCode.Tab))
-        {
-            dealDamage(10);
-        }
-        */
     }
-    /* This will be fully implemented after adjustments to the Instrumon class
-    public void oppTurn()
-    {
-        int randVal = oppCurrentMon.moves.Length;
-        Move selMove = oppCurrentMon.moves[random.Next(0, randVal)];
-        float dmgVal = calcDamage(oppCurrentMon.MaxHP, oppCurrentMon.Attack, selMove.Power);
-        takeDamage(dmgVal);
-    }
-    */
+
     public void winBattle()
     {
 
     }
 
-    public void playerSwitch()
+    public void playerSwitch(int monIndex)
     {
 
     }
     
     public void playerDeathSwitch()
     {
-
+        
     }
-    /*
+
+    public void oppTurn()
+    {
+        int randVal = oppCurrentMon.Moves.Count;
+        Move selMove = oppCurrentMon.Moves[random.Next(0, randVal)];
+        float dmgVal = calcDamage(oppCurrentMon.MaxHP, oppCurrentMon.Attack, selMove.Base.Power);
+        takeDamage(dmgVal);
+    }
+
     public void oppSwitch()
     {
         oppCurrentIndex += 1;
@@ -122,29 +110,33 @@ public class BattleController : MonoBehaviour
             oppCurrentMon = oppParty[oppCurrentIndex];
         }
     }
-    */
-    /*
-    public void executeTurn()
+    
+    
+    public void executeTurn(int attackIndex)
     {
         if (playerFirst())
         {
-            //player deals damage based on move picked
+            //float dmgVal = calcDamage(oppCurrentMon.MaxHP, playerCurrentMon.Attack, playerCurrentMon.Moves[attackIndex];
+            //dealDamage(dmgVal);
+
             if (oppCurrentHealth > 0)
             {
-                //execute oppTurn()
+                oppTurn();
             }
             else
             {
-                //oppSwitch();
+                oppSwitch();
             }
 
         }
         else
         {
-            //execute oppTurn()
+            oppTurn();
+
             if (playerCurrentHealth > 0)
             {
-                //player deals damage
+                //float dmgVal = calcDamage(oppCurrentMon.MaxHP, playerCurrentMon.Attack, playerCurrentMon.Moves[attackIndex];
+                //dealDamage(dmgVal);
             }
             else
             {
@@ -152,8 +144,7 @@ public class BattleController : MonoBehaviour
             }
         }
     }
-    */
-    /*
+    
     public bool playerFirst()
     {
         if (playerCurrentMon.Speed >= oppCurrentMon.Speed)
@@ -165,7 +156,7 @@ public class BattleController : MonoBehaviour
             return false;
         }
     }
-    */
+    
 
     public int calcDamage(int totalHP, int atkStat, int atkPow)
     {
@@ -215,14 +206,50 @@ public class BattleController : MonoBehaviour
         oppHealthBar.fillAmount = oppCurrentHealth / oppTotalHealth;
         oppCurrentHealthText.text = oppCurrentHealth.ToString();
     }
+
+    public void OnAttack1()
+    {
+        executeTurn(0);
+    }
+
+    public void OnAttack2()
+    {
+        executeTurn(1);
+    }
+
+    public void OnAttack3()
+    {
+        executeTurn(2);
+    }
+
+    public void OnAttack4()
+    {
+        executeTurn(3);
+    }
+
+    public void OnMon1()
+    {
+        playerSwitch(0);
+    }
+
+    public void OnMon2()
+    {
+        playerSwitch(1);
+    }
+
+    public void OnMon3()
+    {
+        playerSwitch(2);
+    }
+
+    public void OnMon4()
+    {
+        playerSwitch(3);
+    }
+
     public void OnAttackButton()
     {
 
-    }
-
-    public void OnAttackSelected()
-    {
-        
     }
 
     public void OnMonButton()
