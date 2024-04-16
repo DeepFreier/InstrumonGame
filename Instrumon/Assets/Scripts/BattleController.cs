@@ -29,7 +29,7 @@ public class BattleController : MonoBehaviour
     //player variables
     public static Instrumon[] playerParty;
     public static Instrumon playerCurrentMon; // = playerParty[0];
-    public Sprite playerSprite = playerCurrentMon.Base.FrontSprite;
+    public Sprite playerSprite; //= playerCurrentMon.Base.FrontSprite;
     private String playerName = "Trumpig";
     private int playerCurrentHP = 80;
     private int playerMonHP = 90;
@@ -41,7 +41,7 @@ public class BattleController : MonoBehaviour
     public static Instrumon[] oppParty;
     public static Instrumon oppCurrentMon; // = oppParty[0];
     public int oppCurrentIndex = 0;
-    public Sprite oppSprite = oppCurrentMon.Base.FrontSprite;
+    public Sprite oppSprite; //= oppCurrentMon.Base.FrontSprite;
     private String oppName = "Cymbalisk";
     private int oppMonHP = 120;
     private int oppMonAtk = 50;
@@ -53,14 +53,14 @@ public class BattleController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        playerSpriteHolder.sprite = playerSprite;
+        //playerSpriteHolder.sprite = playerSprite;
         playerNameText.text = playerName.ToString();
         playerCurrentHealth = playerCurrentHP;
         playerTotalHealth = playerMonHP;
         takeDamage(0);
         playerTotalHealthText.text = playerMonHP.ToString();
 
-        oppSpriteHolder.sprite = oppSprite;
+        //oppSpriteHolder.sprite = oppSprite;
         oppNameText.text = oppName.ToString();
         oppCurrentHealth = oppMonHP;
         oppTotalHealth = oppMonHP;
@@ -144,6 +144,7 @@ public class BattleController : MonoBehaviour
             }
         }
     }
+    
     
     public bool playerFirst()
     {
