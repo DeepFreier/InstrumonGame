@@ -77,4 +77,13 @@ public class DialogueManager : MonoBehaviour
         }
         isTyping = false;
     }
+
+    /* Function to set the letters per second value
+    public void SetLettersPerSecond(int newValue)
+    {
+        lettersPerSecond = newValue;
+        // Save the new value using PlayerPrefs
+        PlayerPrefs.SetInt("LettersPerSecond", newValue);
+        PlayerPrefs.Save();
+    } */
 }

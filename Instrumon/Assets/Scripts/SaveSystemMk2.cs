@@ -11,18 +11,18 @@ using Unity.VisualScripting;
 public class SaveSystemMk2 : MonoBehaviour
 {
     public static SaveSystemMk2 ins;
-    
 
-    
+
+
 
     private void Awake()
     {
-        
+
         ins = this;
-        
+
     }
 
-   
+
 
 
     //Creates a public instance of the Savedatabase
@@ -46,19 +46,27 @@ public class SaveSystemMk2 : MonoBehaviour
 
     public void Load()
     {
-        Vector2 PlayerPosn;
-        XmlSerializer serializer = new(typeof(SaveDatabase));
-        FileStream stream = new(Application.dataPath + "/SaveFile/SaveData.xml", FileMode.Open);
-        SaveDatabase OSD = serializer.Deserialize(stream) as SaveDatabase;
-        PlayerPosn.x = OSD.PlayerPosx;
-        PlayerPosn.y = OSD.PlayerPosy;
-        int Flag = OSD.Flag;
-        Debug.Log("Player X:" + PlayerPosn.x);
-        Debug.Log("Player Y:" + PlayerPosn.y);
-        Debug.Log("Flag:"+Flag);
-        Debug.Log("Loading File");
-        LoadPosition(PlayerPosn, Flag);
-        stream.Close();
+        if (File.Exists(Path.Combine(Application.dataPath + "/SaveFile/SaveData.xml")))
+        {
+            Vector2 PlayerPosn;
+            XmlSerializer serializer = new(typeof(SaveDatabase));
+            FileStream stream = new(Application.dataPath + "/SaveFile/SaveData.xml", FileMode.Open);
+            SaveDatabase OSD = serializer.Deserialize(stream) as SaveDatabase;
+            PlayerPosn.x = OSD.PlayerPosx;
+            PlayerPosn.y = OSD.PlayerPosy;
+            int Flag = OSD.Flag;
+            Debug.Log("Player X:" + PlayerPosn.x);
+            Debug.Log("Player Y:" + PlayerPosn.y);
+            Debug.Log("Flag:" + Flag);
+            Debug.Log("Loading File");
+            LoadPosition(PlayerPosn, Flag);
+            stream.Close();
+        }
+        else
+        {
+            Debug.Log("Position Tracker File Not Found. Loading new game.");
+            SceneManager.LoadSceneAsync(1);
+        }
 
     }
 
