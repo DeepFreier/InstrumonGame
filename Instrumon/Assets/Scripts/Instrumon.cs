@@ -3,19 +3,36 @@ using System.Collections.Generic;
 using System.Data;
 using UnityEngine;
 
+[System.Serializable]
 public class Instrumon
 {
-    //Takes note of the Instrumon's stats, current level, and current HP.
-    InstrumonBase _base;
-    int level;
-    public int HP { get; set; }
+    [SerializeField] InstrumonBase _base;
+    [SerializeField] int level;
 
-    public Instrumon(InstrumonBase iBase, int iLevel)
-    {
-        _base = iBase;
-        level = iLevel;
-        HP = _base.MaxHP;
+    //Takes note of the Instrumon's stats, current level, and current HP.
+    public InstrumonBase Base {
+        get { return _base; }
     }
+    public int Level{
+        get { return level; }
+    }
+    public int CurrentHP { get; set; }
+
+    public int IDValue {
+        get { return IDValue; }
+    }
+
+    public void Init()
+    {
+        CurrentHP = _base.MaxHP;
+    }
+
+    public List<Move> Moves { get; set; }
+    public Instrumon(InstrumonBase iBase){
+        _base = iBase;
+        Moves = new List<Move>();
+    }
+
 //Formulas for increasing stats as an Instrumon levels up.
     public int MaxHP {
         get { return Mathf.FloorToInt((_base.MaxHP * level) / 100f) +10; }

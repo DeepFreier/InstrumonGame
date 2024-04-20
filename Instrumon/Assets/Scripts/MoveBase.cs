@@ -12,6 +12,7 @@ public class MoveBase : ScriptableObject
     //Creates the stats for the moves we will create assets for.
     [SerializeField] InstrumonType type;
     [SerializeField] int power;
+    [SerializeField] int pp;
 
     public string MoveName {
         get { return moveName; }
@@ -27,6 +28,10 @@ public class MoveBase : ScriptableObject
 
     public int Power {
         get {return power; }
+    }
+
+    public int PP {
+        get { return PP; }
     }
 
 }

@@ -6,6 +6,10 @@ using UnityEngine.UI;
 using TMPro;
 public class BattleController : MonoBehaviour
 {
+    private System.Random random = new System.Random();
+    public TextMeshProUGUI descriptionText;
+
+    //player visual variables
     public SpriteRenderer playerSpriteHolder;
     public TextMeshProUGUI playerNameText;
     public Image playerHealthBar;
@@ -14,8 +18,7 @@ public class BattleController : MonoBehaviour
     public TextMeshProUGUI playerCurrentHealthText;
     public TextMeshProUGUI playerTotalHealthText;
 
-    private System.Random random = new System.Random();
-
+    //cpu visual variables
     public SpriteRenderer oppSpriteHolder;
     public TextMeshProUGUI oppNameText;
     public Image oppHealthBar;
@@ -24,29 +27,36 @@ public class BattleController : MonoBehaviour
     public TextMeshProUGUI oppCurrentHealthText;
     public TextMeshProUGUI oppTotalHealthText;
 
-    //public static Instrumon[] playerParty;
-    //public Instrumon playerCurrentMon = playerParty[0];
-    public Sprite playerSprite;
-    private String playerName = "Trumpig";
-    private int playerCurrentHP = 80;
-    private int playerMonHP = 90;
-    private int playerMonAtk = 70;
-    private int PlayerMonSpd = 5;
-    //public Attack playerSelectedAtk;
-
-    //public static Instrumon[] oppParty;
-    //public Instrumon oppCurrentMon = oppParty[0];
+    //player variables
+    public static List<Instrumon> playerParty;
+    public static Instrumon playerCurrentMon;// = playerParty[0];
+    public Sprite playerSprite = playerCurrentMon.Base.FrontSprite;
+    private String playerName = playerCurrentMon.Base.Name;
+    private int playerCurrentHP = playerCurrentMon.CurrentHP;
+    private int playerMonHP = playerCurrentMon.MaxHP;
+    private int playerMonAtk = playerCurrentMon.Attack;
+    private int PlayerMonSpd = playerCurrentMon.Speed;
+    
+    //cpu variables
+    public static List<Instrumon> oppParty;
+    public static Instrumon oppCurrentMon;// = oppParty[0];
     public int oppCurrentIndex = 0;
-    public Sprite oppSprite;
-    private String oppName = "Cymbalisk";
-    private int oppMonHP = 120;
-    private int oppMonAtk = 50;
-    private int OpponentMonSpd = 4;
+    public Sprite oppSprite = oppCurrentMon.Base.FrontSprite;
+    private String oppName = oppCurrentMon.Base.Name;
+    private int oppMonHP = oppCurrentMon.MaxHP;
+    private int oppMonAtk = oppCurrentMon.Attack;
+    private int OpponentMonSpd = oppCurrentMon.Speed;
+
+    //button variables
+    public GameObject monList;
+    public GameObject monBackBtn;
 
 
     // Start is called before the first frame update
     void Start()
     {
+        descriptionText.text = "What will you do?";
+        //Displays the right things on screen at the start of battle for the player
         playerSpriteHolder.sprite = playerSprite;
         playerNameText.text = playerName.ToString();
         playerCurrentHealth = playerCurrentHP;
@@ -54,6 +64,7 @@ public class BattleController : MonoBehaviour
         takeDamage(0);
         playerTotalHealthText.text = playerMonHP.ToString();
 
+        //... and the opponent
         oppSpriteHolder.sprite = oppSprite;
         oppNameText.text = oppName.ToString();
         oppCurrentHealth = oppMonHP;
@@ -66,94 +77,112 @@ public class BattleController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        /*
-        if (Input.GetKeyDown(KeyCode.Return))
+        if (Input.GetKeyDown("space"))
         {
-            takeDamage(calcDamage(playerMonHP, 50, 30));
+            playerDeathSwitch();
         }
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            healDamage(5);
-        }
+    }
 
-        if (Input.GetKeyDown(KeyCode.Escape))
-        {
-            healOppDamage(10);
-        }
-        if (Input.GetKeyDown(KeyCode.Tab))
-        {
-            dealDamage(10);
-        }
-        */
-    }
-    /* This will be fully implemented after adjustments to the Instrumon class
-    public void oppTurn()
-    {
-        int randVal = oppCurrentMon.moves.Length;
-        Move selMove = oppCurrentMon.moves[random.Next(0, randVal)];
-        float dmgVal = calcDamage(oppCurrentMon.MaxHP, oppCurrentMon.Attack, selMove.Power);
-        takeDamage(dmgVal);
-    }
-    */
+    //is called when all of the opponent's mons die
     public void winBattle()
     {
 
     }
 
-    public void playerSwitch()
+    //is called when all of the player's mons die
+    public void loseBattle()
     {
 
+    }
+
+    //is called when player voluntarily switches mons
+    public void playerSwitch(int monIndex)
+    {
+        playerCurrentMon = playerParty[monIndex];
+        playerSpriteHolder.sprite = playerSprite;
+        playerNameText.text = playerName.ToString();
+        playerCurrentHealth = playerCurrentHP;
+        playerTotalHealth = playerMonHP;
+        takeDamage(0);
+        playerTotalHealthText.text = playerMonHP.ToString();
+
+        oppTurn();
     }
     
+    //is called when player's mon dies
     public void playerDeathSwitch()
     {
-
+        descriptionText.text = playerName.ToString() + "has fainted, please choose another Instrumon to battle.";
+        monList.SetActive(true);
+        monBackBtn.SetActive(false);
     }
-    /*
-    public void oppSwitch()
-    {
-        oppCurrentIndex += 1;
-        if (oppCurrentIndex > oppParty.Length - 1)
-        {
-            winBattle();
-        }
-        else
-        {
-            oppCurrentMon = oppParty[oppCurrentIndex];
-        }
-    }
-    */
-    /*
-    public void executeTurn()
+    
+    //is called when the player chooses a move to use
+    public void executeTurn(int attackIndex)
     {
         if (playerFirst())
         {
-            //player deals damage based on move picked
-            if (oppCurrentHealth > 0)
+            //float dmgVal = calcDamage(oppCurrentMon.MaxHP, playerCurrentMon.Attack, playerCurrentMon.Moves[attackIndex];
+            //dealDamage(dmgVal);
+
+            if (oppCurrentHealth > 0) //if the opp mon dies, force a switch
             {
-                //execute oppTurn()
+                oppTurn();
             }
             else
             {
-                //oppSwitch();
+                oppSwitch();
             }
 
         }
         else
         {
-            //execute oppTurn()
-            if (playerCurrentHealth > 0)
+            oppTurn();
+
+            if (playerCurrentHealth > 0) //if the player mon dies, force a switch
             {
-                //player deals damage
+                //float dmgVal = calcDamage(oppCurrentMon.MaxHP, playerCurrentMon.Attack, playerCurrentMon.Moves[attackIndex];
+                //dealDamage(dmgVal);
             }
             else
             {
                 playerDeathSwitch();
             }
         }
+        descriptionText.text = "What's the next move?";
     }
-    */
-    /*
+
+    //is called by execute turn depending on who attacks first according to
+    //playerFirst()
+    public void oppTurn()
+    {
+        int randVal = oppCurrentMon.Moves.Count;
+        Move selMove = oppCurrentMon.Moves[random.Next(0, randVal)];
+        float dmgVal = calcDamage(oppCurrentMon.MaxHP, oppCurrentMon.Attack, selMove.Base.Power);
+        takeDamage(dmgVal);
+    }
+
+    //is called when an opponent mon dies
+    public void oppSwitch()
+    {
+        oppCurrentIndex += 1;
+        if (oppCurrentIndex > oppParty.Count - 1)
+        {
+            winBattle();
+        }
+        else
+        {
+            oppCurrentMon = oppParty[oppCurrentIndex];
+            oppSpriteHolder.sprite = oppSprite;
+            oppNameText.text = oppName.ToString();
+            oppCurrentHealth = oppMonHP;
+            oppTotalHealth = oppMonHP;
+            dealDamage(0);
+            oppTotalHealthText.text = oppMonHP.ToString();
+        }
+    }
+
+    //returns a bool for if the player or opponent goes first
     public bool playerFirst()
     {
         if (playerCurrentMon.Speed >= oppCurrentMon.Speed)
@@ -165,13 +194,14 @@ public class BattleController : MonoBehaviour
             return false;
         }
     }
-    */
-
+    
+    //damage value calc
     public int calcDamage(int totalHP, int atkStat, int atkPow)
     {
         return (int)Math.Ceiling((decimal)(Math.Abs(atkStat + atkPow - totalHP / 2)));
     }
 
+    //damage done to player
     public void takeDamage(float damage)
     {
         playerCurrentHealth -= damage;
@@ -183,6 +213,7 @@ public class BattleController : MonoBehaviour
         playerCurrentHealthText.text = playerCurrentHealth.ToString();
     }
 
+    //damage done to opponent
     public void dealDamage(float damage)
     {
         oppCurrentHealth -= damage;
@@ -194,6 +225,7 @@ public class BattleController : MonoBehaviour
         oppCurrentHealthText.text = oppCurrentHealth.ToString();
     }
 
+    //heal done to player
     public void healDamage(float heal)
     {
         playerCurrentHealth += heal;
@@ -205,6 +237,7 @@ public class BattleController : MonoBehaviour
         playerCurrentHealthText.text = playerCurrentHealth.ToString();
     }
 
+    //heal done to opponent
     public void healOppDamage(float heal)
     {
         oppCurrentHealth += heal;
@@ -215,14 +248,81 @@ public class BattleController : MonoBehaviour
         oppHealthBar.fillAmount = oppCurrentHealth / oppTotalHealth;
         oppCurrentHealthText.text = oppCurrentHealth.ToString();
     }
+
+    //OnAttack1-4() passes the index of the attack to the turn executer
+    public void OnAttack1()
+    {
+        executeTurn(0);
+    }
+
+    public void OnAttack2()
+    {
+        executeTurn(1);
+    }
+
+    public void OnAttack3()
+    {
+        executeTurn(2);
+    }
+
+    public void OnAttack4()
+    {
+        executeTurn(3);
+    }
+
+    //OnMon1-4() passes the index of the mon to switch to to the mon switcher
+    public void OnMon1()
+    {
+        if (playerParty[0].CurrentHP > 0)
+        {
+            playerSwitch(0);
+        }
+        else
+        {
+            playerNameText.text = "That Instrumon isn't fit for battle!";
+}
+    }
+
+    public void OnMon2()
+    {
+        if (playerParty[1].CurrentHP > 0)
+        {
+            playerSwitch(1);
+        }
+        else
+        {
+            playerNameText.text = "That Instrumon isn't fit for battle!";
+        }
+    }
+
+    public void OnMon3()
+    {
+        if (playerParty[2].CurrentHP > 0)
+        {
+            playerSwitch(2);
+        }
+        else
+        {
+            playerNameText.text = "That Instrumon isn't fit for battle!";
+        }
+    }
+
+    public void OnMon4()
+    {
+        if (playerParty[3].CurrentHP > 0)
+        {
+            playerSwitch(3);
+        }
+        else
+        {
+            playerNameText.text = "That Instrumon isn't fit for battle!";
+        }
+    }
+
+    //extra functions in case needed for each main button press
     public void OnAttackButton()
     {
 
-    }
-
-    public void OnAttackSelected()
-    {
-        
     }
 
     public void OnMonButton()
