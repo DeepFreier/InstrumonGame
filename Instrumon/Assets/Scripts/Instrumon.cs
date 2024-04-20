@@ -37,12 +37,12 @@ public class Instrumon
 
 //Formulas for increasing stats as an Instrumon levels up.
     public int MaxHP {
-        get { return Mathf.FloorToInt((_base.MaxHP * level) / 100f) +10; }
+        get { return Mathf.FloorToInt(_base.MaxHP+(((_base.MaxHP * level) / 100f) + 10)); }
     }
     public int Attack {
-        get { return Mathf.FloorToInt((_base.Attack * level) / 100f) +5; }
+        get { return Mathf.FloorToInt(_base.Attack+(((_base.Attack * level) / 100f) +5)); }
     }
     public int Speed {
-        get { return Mathf.FloorToInt((_base.Speed * level) / 100f) +5; }
+        get { return Mathf.FloorToInt(_base.Speed+(((_base.Speed * level) / 100f) +5)); }
     }
 }
