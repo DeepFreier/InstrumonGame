@@ -67,6 +67,12 @@ public class MenuManager : MonoBehaviour
             playerController.enabled = false;
             animator.enabled = false;
         }
+        if (SceneManager.GetActiveScene().buildIndex == 0)
+        {
+            Time.timeScale = 1f;  // Resume the game
+            playerController.enabled = true;  // Enable player movement
+            animator.enabled = true;  // Enable animator
+        }
         else
         {
             Time.timeScale = 1f;
