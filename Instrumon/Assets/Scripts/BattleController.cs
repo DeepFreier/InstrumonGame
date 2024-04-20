@@ -32,7 +32,7 @@ public class BattleController : MonoBehaviour
     public static Instrumon playerCurrentMon;// = playerParty[0];
     public Sprite playerSprite = playerCurrentMon.Base.FrontSprite;
     private String playerName = playerCurrentMon.Base.Name;
-    private int playerCurrentHP = playerCurrentMon.CurrentHP;
+    private int playerCurrentHP = playerCurrentMon.Base.CurrentHP;
     private int playerMonHP = playerCurrentMon.MaxHP;
     private int playerMonAtk = playerCurrentMon.Attack;
     private int PlayerMonSpd = playerCurrentMon.Speed;
@@ -273,7 +273,7 @@ public class BattleController : MonoBehaviour
     //OnMon1-4() passes the index of the mon to switch to to the mon switcher
     public void OnMon1()
     {
-        if (playerParty[0].CurrentHP > 0)
+        if (playerParty[0].Base.CurrentHP > 0)
         {
             playerSwitch(0);
         }
@@ -285,7 +285,7 @@ public class BattleController : MonoBehaviour
 
     public void OnMon2()
     {
-        if (playerParty[1].CurrentHP > 0)
+        if (playerParty[1].Base.CurrentHP > 0)
         {
             playerSwitch(1);
         }
@@ -297,7 +297,7 @@ public class BattleController : MonoBehaviour
 
     public void OnMon3()
     {
-        if (playerParty[2].CurrentHP > 0)
+        if (playerParty[2].Base.CurrentHP > 0)
         {
             playerSwitch(2);
         }
@@ -309,7 +309,7 @@ public class BattleController : MonoBehaviour
 
     public void OnMon4()
     {
-        if (playerParty[3].CurrentHP > 0)
+        if (playerParty[3].Base.CurrentHP > 0)
         {
             playerSwitch(3);
         }

@@ -34,6 +34,23 @@ public class PlayerController : MonoBehaviour
         animator = GetComponent<Animator>();
     }
 
+   
+    public void UpdateParty()
+    {
+        foreach (var instrumon in playerparty)
+        {
+            instrumon.LevelSet(playerlevel);
+            Debug.Log(instrumon.level);
+            instrumon.Base.MaxHP = instrumon.MaxHP;
+            instrumon.Base.Attack = instrumon.Attack;
+            instrumon.Base.Speed = instrumon.Speed;
+            Debug.Log("Instrumon name: " + instrumon.Base.Name);
+            Debug.Log("Instrumon MaxHP: " + instrumon.Base.MaxHP);
+            Debug.Log("Instrumon current HP: " + instrumon.Base.CurrentHP);
+        }
+        Debug.Log("Party Updated");
+    }
+
 
     public void UpdateParty()
     {

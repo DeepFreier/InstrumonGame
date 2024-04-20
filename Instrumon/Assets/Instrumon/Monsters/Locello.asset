@@ -20,3 +20,4 @@ MonoBehaviour:
   maxHP: 40
   attack: 70
   speed: 55
+  currentHP: 40
