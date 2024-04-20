@@ -4,6 +4,7 @@ using System;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEngine.SceneManagement;
 public class BattleController : MonoBehaviour
 {
     private System.Random random = new System.Random();
@@ -28,29 +29,22 @@ public class BattleController : MonoBehaviour
     public TextMeshProUGUI oppTotalHealthText;
 
     //player variables
-    public static List<Instrumon> playerParty;
-    public static Instrumon playerCurrentMon;// = playerParty[0];
+    public static List<Instrumon> playerParty = ProgressFlags.returnPlyrPrty();
+    public static Instrumon playerCurrentMon = playerParty[0];
     public Sprite playerSprite = playerCurrentMon.Base.FrontSprite;
     private String playerName = playerCurrentMon.Base.Name;
-    private int playerCurrentHP = playerCurrentMon.Base.CurrentHP;
-    private int playerMonHP = playerCurrentMon.MaxHP;
-    private int playerMonAtk = playerCurrentMon.Attack;
-    private int PlayerMonSpd = playerCurrentMon.Speed;
     
     //cpu variables
-    public static List<Instrumon> oppParty;
-    public static Instrumon oppCurrentMon;// = oppParty[0];
+    public static List<Instrumon> oppParty = ProgressFlags.returnOppPrty();
+    public static Instrumon oppCurrentMon = oppParty[0];
     public int oppCurrentIndex = 0;
     public Sprite oppSprite = oppCurrentMon.Base.FrontSprite;
     private String oppName = oppCurrentMon.Base.Name;
     private int oppMonHP = oppCurrentMon.MaxHP;
-    private int oppMonAtk = oppCurrentMon.Attack;
-    private int OpponentMonSpd = oppCurrentMon.Speed;
 
     //button variables
     public GameObject monList;
     public GameObject monBackBtn;
-
 
     // Start is called before the first frame update
     void Start()
@@ -59,10 +53,10 @@ public class BattleController : MonoBehaviour
         //Displays the right things on screen at the start of battle for the player
         playerSpriteHolder.sprite = playerSprite;
         playerNameText.text = playerName.ToString();
-        playerCurrentHealth = playerCurrentHP;
-        playerTotalHealth = playerMonHP;
+        playerCurrentHealth = playerCurrentMon.Base.CurrentHP;
+        playerTotalHealth = playerCurrentMon.MaxHP;
         takeDamage(0);
-        playerTotalHealthText.text = playerMonHP.ToString();
+        playerTotalHealthText.text = playerTotalHealth.ToString();
 
         //... and the opponent
         oppSpriteHolder.sprite = oppSprite;
@@ -71,28 +65,26 @@ public class BattleController : MonoBehaviour
         oppTotalHealth = oppMonHP;
         dealDamage(0);
         oppTotalHealthText.text = oppMonHP.ToString();
-
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown("space"))
-        {
-            playerDeathSwitch();
-        }
+        
     }
 
     //is called when all of the opponent's mons die
     public void winBattle()
     {
-
+        descriptionText.text = "You win!";
+        SceneManager.LoadScene(1);
     }
 
     //is called when all of the player's mons die
     public void loseBattle()
     {
-
+        descriptionText.text = "You lost...";
+        SceneManager.LoadScene(1);
     }
 
     //is called when player voluntarily switches mons
@@ -101,10 +93,10 @@ public class BattleController : MonoBehaviour
         playerCurrentMon = playerParty[monIndex];
         playerSpriteHolder.sprite = playerSprite;
         playerNameText.text = playerName.ToString();
-        playerCurrentHealth = playerCurrentHP;
-        playerTotalHealth = playerMonHP;
+        playerCurrentHealth = playerCurrentMon.Base.CurrentHP;
+        playerTotalHealth = playerCurrentMon.MaxHP;
         takeDamage(0);
-        playerTotalHealthText.text = playerMonHP.ToString();
+        playerTotalHealthText.text = playerCurrentMon.MaxHP.ToString();
 
         oppTurn();
     }
@@ -122,8 +114,8 @@ public class BattleController : MonoBehaviour
     {
         if (playerFirst())
         {
-            //float dmgVal = calcDamage(oppCurrentMon.MaxHP, playerCurrentMon.Attack, playerCurrentMon.Moves[attackIndex];
-            //dealDamage(dmgVal);
+            float dmgVal = calcDamage(oppCurrentMon.MaxHP, playerCurrentMon.Attack, playerCurrentMon.Moves[attackIndex]);
+            dealDamage(dmgVal);
 
             if (oppCurrentHealth > 0) //if the opp mon dies, force a switch
             {
@@ -141,8 +133,8 @@ public class BattleController : MonoBehaviour
 
             if (playerCurrentHealth > 0) //if the player mon dies, force a switch
             {
-                //float dmgVal = calcDamage(oppCurrentMon.MaxHP, playerCurrentMon.Attack, playerCurrentMon.Moves[attackIndex];
-                //dealDamage(dmgVal);
+                float dmgVal = calcDamage(oppCurrentMon.MaxHP, playerCurrentMon.Attack, playerCurrentMon.Moves[attackIndex]);
+                dealDamage(dmgVal);
             }
             else
             {
@@ -158,7 +150,7 @@ public class BattleController : MonoBehaviour
     {
         int randVal = oppCurrentMon.Moves.Count;
         Move selMove = oppCurrentMon.Moves[random.Next(0, randVal)];
-        float dmgVal = calcDamage(oppCurrentMon.MaxHP, oppCurrentMon.Attack, selMove.Base.Power);
+        float dmgVal = calcDamage(oppCurrentMon.MaxHP, oppCurrentMon.Attack, selMove);
         takeDamage(dmgVal);
     }
 
@@ -196,9 +188,9 @@ public class BattleController : MonoBehaviour
     }
     
     //damage value calc
-    public int calcDamage(int totalHP, int atkStat, int atkPow)
+    public int calcDamage(int totalHP, int atkStat, Move Move)
     {
-        return (int)Math.Ceiling((decimal)(Math.Abs(atkStat + atkPow - totalHP / 2)));
+        return (int)Math.Ceiling((decimal)(Math.Abs(atkStat + Move.Base.Power - totalHP / 2)));
     }
 
     //damage done to player
