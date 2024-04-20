@@ -1,48 +1,75 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UIElements;
 
 public class PlayerController : MonoBehaviour
 {
+    // Movement variables
     public float moveSpeed;
     private bool isMoving;
     private Vector2 input;
     private Animator animator;
+
+    // Layer masks for collision detection
     public LayerMask solidObjectsLayer;
     public LayerMask interactableLayer;
     public LayerMask teleportLayer;
-    private bool allowInput = true; // Flag to control whether input is allowed
+
+    // Flag to control whether input is allowed
+    private bool allowInput = true;
+
+    // List of Instrumon in the player's party and player level
+    public List<Instrumon> playerparty;
+    public int playerlevel;
 
     // Calls the function inside when the script is loaded
     private void Awake()
     {
-        animator = GetComponent<Animator>(); // Grabs the animator from Unity and assigns the variable to it.
+        // Grabs the animator from Unity and assigns the variable to it
+        animator = GetComponent<Animator>();
     }
 
-    // Handles player movement and interaction
+    // Updates the player's party
+    public void UpdateParty()
+    {
+        foreach (var instrumon in playerparty)
+        {
+            instrumon.LevelSet(playerlevel);
+            instrumon.Base.MaxHP = instrumon.MaxHP;
+            instrumon.Base.Attack = instrumon.Attack;
+            instrumon.Base.Speed = instrumon.Speed;
+        }
+        Debug.Log("Party Updated");
+    }
+
+    // Handles player input and movement
     public void HandleUpdate()
     {
         if (!isMoving && allowInput) // Process input only if not moving and input is allowed
         {
+            // Store input from the player
             input.x = Input.GetAxisRaw("Horizontal");
             input.y = Input.GetAxisRaw("Vertical");
 
+            // Stop the player from moving diagonally
             if (input.x != 0) input.y = 0;
 
             if (input != Vector2.zero)
             {
+                // Set animator parameters
                 animator.SetFloat("moveX", input.x);
                 animator.SetFloat("moveY", input.y);
 
-                var targetPos = transform.position;
-                targetPos.x += input.x;
-                targetPos.y += input.y;
+                // Calculate target position
+                var targetPos = transform.position + new Vector3(input.x, input.y, 0);
 
+                // Move the player if the target position is walkable
                 if (IsWalkable(targetPos))
                 {
-                    StartCoroutine(Move(targetPos)); // Moves the player using the targetPos variable
+                    StartCoroutine(Move(targetPos));
                 }
+
+                // Teleport the player if applicable
                 if (isTeleport(targetPos))
                 {
                     var collider = Physics2D.OverlapCircle(targetPos, .2f, teleportLayer);
@@ -53,9 +80,11 @@ public class PlayerController : MonoBehaviour
                 }
             }
         }
-        // Tells the animator that the player is moving
+
+        // Set animator parameter for player movement
         animator.SetBool("isMoving", isMoving);
 
+        // Handle player interaction
         if (Input.GetKeyDown(KeyCode.E))
         {
             Interact();
@@ -65,19 +94,15 @@ public class PlayerController : MonoBehaviour
     // Handles player interaction with objects
     private void Interact()
     {
-        //Calculates where the player is facing using the animator
+        // Calculate interaction position based on player's facing direction
         var facingDir = new Vector3(animator.GetFloat("moveX"), animator.GetFloat("moveY"));
-        //Calculates a position using the player's current position and the facingDir
         var interactPos = transform.position + facingDir;
 
-        //Debug.DrawLine(transform.position, interactPos, Color.red, 1f);
-
-        //Checks if something is there
+        // Check if something is interactable at the calculated position
         var collider = Physics2D.OverlapCircle(interactPos, 0.2f, interactableLayer);
         if (collider != null)
         {
             collider.GetComponent<Interactable>()?.Interact();
-            //Debug.Log("There is an NPC here!");
         }
     }
 
@@ -90,21 +115,17 @@ public class PlayerController : MonoBehaviour
     // Coroutine to move the player smoothly
     IEnumerator Move(Vector3 targetPos)
     {
-        // Tells the script the player is moving when this is called
-        isMoving = true;
+        isMoving = true; // Set moving flag
 
-        // While the player is moving, this method moves the actual player avatar.
-        // (targetPos - transform.position).sqrMagnitude > Mathf.Epsilon is just saying
-        // that the player movement is greater than zero
         while ((targetPos - transform.position).sqrMagnitude > Mathf.Epsilon)
         {
-            // Sets the player's position to where it should be using targetPos
+            // Move the player towards the target position
             transform.position = Vector3.MoveTowards(transform.position, targetPos, moveSpeed * Time.deltaTime);
             yield return null;
         }
-        transform.position = targetPos;
-        // When the player is no longer moving, the script is told the player is no longer moving
-        isMoving = false;
+
+        transform.position = targetPos; // Ensure the player is exactly at the target position
+        isMoving = false; // Reset moving flag
     }
 
     // Checks if the target position is walkable
