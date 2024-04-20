@@ -1,18 +1,14 @@
 using JetBrains.Annotations;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-/// <summary>
-/// Manages the in-game menu functionality including pausing the game, displaying various panels, and handling button interactions.
-/// </summary>
 public class MenuManager : MonoBehaviour
 {
     // Flag indicating whether the game is paused or not
-    public bool isPaused;
+    public bool IsPaused { get; private set; }
 
+    // References to various UI panels and buttons
     public GameObject pauseMenu;
     public GameObject instrumonPanel;
     public GameObject optionsPanel;
@@ -24,10 +20,8 @@ public class MenuManager : MonoBehaviour
     public Button saveButton;
     public Button quitButton;
 
-    // Reference to the player controller script
+    // References to other game objects and components
     public PlayerController playerController;
-
-    // Reference to the animator component
     public Animator animator;
 
     /// <summary>
@@ -41,41 +35,64 @@ public class MenuManager : MonoBehaviour
         // Toggle the pause menu state when the Escape key is pressed
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            pauseMenu.SetActive(!isActive);
-            isPaused = !isActive;
-
-            // Pause or resume the game and related components accordingly
-            if (isPaused)
-            {
-                Time.timeScale = 0f;  // Pause the game
-                playerController.enabled = false;  // Disable player movement
-                animator.enabled = false;  // Disable animator
-            }
-            if (SceneManager.GetActiveScene().buildIndex == 0)
-            {
-                Time.timeScale = 1f;  // Resume the game
-                playerController.enabled = true;  // Enable player movement
-                animator.enabled = true;  // Enable animator
-            }
-            else
-            {
-                Time.timeScale = 1f;  // Resume the game
-                playerController.enabled = true;  // Enable player movement
-                animator.enabled = true;  // Enable animator
-            }
-
-            // Close other panels when pausing or resuming the game
-            instrumonPanel.SetActive(false);
-            optionsPanel.SetActive(false);
-            playerPanel.SetActive(false);
+            TogglePauseMenu(!isActive);
         }
 
         // Disable buttons when any panel is active
         bool anyPanelActive = instrumonPanel.activeSelf || optionsPanel.activeSelf || playerPanel.activeSelf;
-        instrumonButton.enabled = !anyPanelActive;
-        optionsButton.enabled = !anyPanelActive;
-        playerButton.enabled = !anyPanelActive;
-        saveButton.enabled = !anyPanelActive;
-        quitButton.enabled = !anyPanelActive;
+        DisableButtons(anyPanelActive);
+
+        // Ignore player input when the game is paused
+        if (IsPaused)
+        {
+            playerController.IgnoreInput();
+        }
+        else
+        {
+            playerController.AllowInput();
+        }
+    }
+
+    // Method to toggle the pause menu
+    void TogglePauseMenu(bool pause)
+    {
+        pauseMenu.SetActive(pause);
+        IsPaused = pause;
+
+        // Pause or resume the game and related components accordingly
+        if (pause)
+        {
+            //Debug.Log("The game is paused");
+            Time.timeScale = 0f;
+            playerController.enabled = false;
+            animator.enabled = false;
+        }
+        else
+        {
+            Time.timeScale = 1f;
+            playerController.enabled = true;
+            animator.enabled = true;
+        }
+
+        // Close all panels when pausing or resuming the game
+        CloseAllPanels();
+    }
+
+    // Method to disable buttons when any panel is active
+    void DisableButtons(bool disable)
+    {
+        instrumonButton.enabled = !disable;
+        optionsButton.enabled = !disable;
+        playerButton.enabled = !disable;
+        saveButton.enabled = !disable;
+        quitButton.enabled = !disable;
+    }
+
+    // Method to close all panels
+    void CloseAllPanels()
+    {
+        instrumonPanel.SetActive(false);
+        optionsPanel.SetActive(false);
+        playerPanel.SetActive(false);
     }
 }
