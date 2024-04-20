@@ -6,6 +6,9 @@ using UnityEngine.UI;
 using TMPro;
 public class BattleController : MonoBehaviour
 {
+    private System.Random random = new System.Random();
+    public TextMeshProUGUI descriptionText;
+
     //player visual variables
     public SpriteRenderer playerSpriteHolder;
     public TextMeshProUGUI playerNameText;
@@ -14,8 +17,6 @@ public class BattleController : MonoBehaviour
     private float playerTotalHealth;
     public TextMeshProUGUI playerCurrentHealthText;
     public TextMeshProUGUI playerTotalHealthText;
-
-    private System.Random random = new System.Random();
 
     //cpu visual variables
     public SpriteRenderer oppSpriteHolder;
@@ -28,33 +29,35 @@ public class BattleController : MonoBehaviour
 
     //player variables
     public static List<Instrumon> playerParty;
-    public static Instrumon playerCurrentMon = playerParty[0];
+    public static Instrumon playerCurrentMon;// = playerParty[0];
     public Sprite playerSprite = playerCurrentMon.Base.FrontSprite;
-    private String playerName = "Trumpig";
-    private int playerCurrentHP = 80;
-    private int playerMonHP = 90;
-    private int playerMonAtk = 70;
-    private int PlayerMonSpd = 5;
+    private String playerName = playerCurrentMon.Base.Name;
+    private int playerCurrentHP = playerCurrentMon.CurrentHP;
+    private int playerMonHP = playerCurrentMon.MaxHP;
+    private int playerMonAtk = playerCurrentMon.Attack;
+    private int PlayerMonSpd = playerCurrentMon.Speed;
     
     //cpu variables
     public static List<Instrumon> oppParty;
-    public static Instrumon oppCurrentMon = oppParty[0];
+    public static Instrumon oppCurrentMon;// = oppParty[0];
     public int oppCurrentIndex = 0;
     public Sprite oppSprite = oppCurrentMon.Base.FrontSprite;
-    private String oppName = "Cymbalisk";
-    private int oppMonHP = 120;
-    private int oppMonAtk = 50;
-    private int OpponentMonSpd = 4;
+    private String oppName = oppCurrentMon.Base.Name;
+    private int oppMonHP = oppCurrentMon.MaxHP;
+    private int oppMonAtk = oppCurrentMon.Attack;
+    private int OpponentMonSpd = oppCurrentMon.Speed;
 
     //button variables
+    public GameObject monList;
+    public GameObject monBackBtn;
 
 
     // Start is called before the first frame update
     void Start()
-    {   
+    {
+        descriptionText.text = "What will you do?";
         //Displays the right things on screen at the start of battle for the player
-
-        //playerSpriteHolder.sprite = playerSprite;
+        playerSpriteHolder.sprite = playerSprite;
         playerNameText.text = playerName.ToString();
         playerCurrentHealth = playerCurrentHP;
         playerTotalHealth = playerMonHP;
@@ -62,8 +65,7 @@ public class BattleController : MonoBehaviour
         playerTotalHealthText.text = playerMonHP.ToString();
 
         //... and the opponent
-
-        //oppSpriteHolder.sprite = oppSprite;
+        oppSpriteHolder.sprite = oppSprite;
         oppNameText.text = oppName.ToString();
         oppCurrentHealth = oppMonHP;
         oppTotalHealth = oppMonHP;
@@ -75,7 +77,10 @@ public class BattleController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        if (Input.GetKeyDown("space"))
+        {
+            playerDeathSwitch();
+        }
     }
 
     //is called when all of the opponent's mons die
@@ -93,13 +98,23 @@ public class BattleController : MonoBehaviour
     //is called when player voluntarily switches mons
     public void playerSwitch(int monIndex)
     {
+        playerCurrentMon = playerParty[monIndex];
+        playerSpriteHolder.sprite = playerSprite;
+        playerNameText.text = playerName.ToString();
+        playerCurrentHealth = playerCurrentHP;
+        playerTotalHealth = playerMonHP;
+        takeDamage(0);
+        playerTotalHealthText.text = playerMonHP.ToString();
 
+        oppTurn();
     }
     
     //is called when player's mon dies
     public void playerDeathSwitch()
     {
-        
+        descriptionText.text = playerName.ToString() + "has fainted, please choose another Instrumon to battle.";
+        monList.SetActive(true);
+        monBackBtn.SetActive(false);
     }
     
     //is called when the player chooses a move to use
@@ -134,6 +149,7 @@ public class BattleController : MonoBehaviour
                 playerDeathSwitch();
             }
         }
+        descriptionText.text = "What's the next move?";
     }
 
     //is called by execute turn depending on who attacks first according to
@@ -157,6 +173,12 @@ public class BattleController : MonoBehaviour
         else
         {
             oppCurrentMon = oppParty[oppCurrentIndex];
+            oppSpriteHolder.sprite = oppSprite;
+            oppNameText.text = oppName.ToString();
+            oppCurrentHealth = oppMonHP;
+            oppTotalHealth = oppMonHP;
+            dealDamage(0);
+            oppTotalHealthText.text = oppMonHP.ToString();
         }
     }
 
@@ -251,22 +273,50 @@ public class BattleController : MonoBehaviour
     //OnMon1-4() passes the index of the mon to switch to to the mon switcher
     public void OnMon1()
     {
-        playerSwitch(0);
+        if (playerParty[0].CurrentHP > 0)
+        {
+            playerSwitch(0);
+        }
+        else
+        {
+            playerNameText.text = "That Instrumon isn't fit for battle!";
+}
     }
 
     public void OnMon2()
     {
-        playerSwitch(1);
+        if (playerParty[1].CurrentHP > 0)
+        {
+            playerSwitch(1);
+        }
+        else
+        {
+            playerNameText.text = "That Instrumon isn't fit for battle!";
+        }
     }
 
     public void OnMon3()
     {
-        playerSwitch(2);
+        if (playerParty[2].CurrentHP > 0)
+        {
+            playerSwitch(2);
+        }
+        else
+        {
+            playerNameText.text = "That Instrumon isn't fit for battle!";
+        }
     }
 
     public void OnMon4()
     {
-        playerSwitch(3);
+        if (playerParty[3].CurrentHP > 0)
+        {
+            playerSwitch(3);
+        }
+        else
+        {
+            playerNameText.text = "That Instrumon isn't fit for battle!";
+        }
     }
 
     //extra functions in case needed for each main button press
