@@ -18,6 +18,7 @@ MonoBehaviour:
     often be found competing with Guitowl in the forest.
   frontSprite: {fileID: 0}
   type: 3
-  maxHP: 50
-  attack: 60
-  speed: 55
+  maxHP: 11
+  attack: 6
+  speed: 6
+  currentHP: 50
