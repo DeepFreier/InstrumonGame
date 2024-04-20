@@ -29,11 +29,6 @@ public class SaveSystemMk2 : MonoBehaviour
     public SaveDatabase SD;
 
 
-    
-
-    
-    
-
 
     public void Save()
     {

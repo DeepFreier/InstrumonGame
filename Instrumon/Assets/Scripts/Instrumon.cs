@@ -7,25 +7,27 @@ using UnityEngine;
 public class Instrumon
 {
     [SerializeField] InstrumonBase _base;
-    [SerializeField] int level;
+     public int level;
 
     //Takes note of the Instrumon's stats, current level, and current HP.
     public InstrumonBase Base {
         get { return _base; }
     }
-    public int Level{
+    public int Level {
         get { return level; }
+
     }
-    public int CurrentHP { get; set; }
+    public void LevelSet(int lvl)
+    {
+        level = lvl;
+    }
+    
 
     public int IDValue {
         get { return IDValue; }
     }
 
-    public void Init()
-    {
-        CurrentHP = _base.MaxHP;
-    }
+   
 
     public List<Move> Moves { get; set; }
     public Instrumon(InstrumonBase iBase){

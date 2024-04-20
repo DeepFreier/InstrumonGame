@@ -19,6 +19,7 @@ MonoBehaviour:
     they wake up.
   frontSprite: {fileID: 0}
   type: 0
-  maxHP: 50
-  attack: 65
-  speed: 50
+  maxHP: 11
+  attack: 6
+  speed: 6
+  currentHP: 50

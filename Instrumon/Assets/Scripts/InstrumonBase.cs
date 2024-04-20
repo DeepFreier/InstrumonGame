@@ -15,10 +15,11 @@ public class InstrumonBase : ScriptableObject
     [SerializeField] InstrumonType type;
 
     //Instrumon base stats are created to be assigned to the monster.
-    
+
     [SerializeField] int maxHP;
     [SerializeField] int attack;
     [SerializeField] int speed;
+    [SerializeField] int currentHP;
 
     public string Name {
         get { return name; }
@@ -37,15 +38,25 @@ public class InstrumonBase : ScriptableObject
 
     public int MaxHP {
         get { return maxHP; }
+        set { maxHP = value; }
     }
 
     public int Attack {
         get { return attack; }
+        set { attack = value; }
     }
 
     public int Speed {
         get { return speed; }
+        set { speed = value; }
     }
+    public int CurrentHP
+    {
+        get { return currentHP; }
+        set { currentHP = value;}
+    }
+
+    
 
 }
 
