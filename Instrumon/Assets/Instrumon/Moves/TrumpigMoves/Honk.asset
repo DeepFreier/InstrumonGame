@@ -17,3 +17,4 @@ MonoBehaviour:
     opponent to attack them.
   type: 1
   power: 15
+  pp: 15
