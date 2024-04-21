@@ -16,6 +16,6 @@ MonoBehaviour:
   description: 
   frontSprite: {fileID: 0}
   type: 0
-  maxHP: 0
-  attack: 0
-  speed: 0
+  maxHP: 55
+  attack: 40
+  speed: 80

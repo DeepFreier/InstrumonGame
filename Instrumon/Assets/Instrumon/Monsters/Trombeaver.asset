@@ -15,7 +15,7 @@ MonoBehaviour:
   instrumonName: 
   description: 
   frontSprite: {fileID: 0}
-  type: 0
-  maxHP: 0
-  attack: 0
-  speed: 0
+  type: 1
+  maxHP: 70
+  attack: 50
+  speed: 30
