@@ -15,4 +15,5 @@ MonoBehaviour:
   moveName: Chomp
   description: Cymbalisk opens up its mouth and clamps its jaws shut on its opponent.
   type: 2
-  power: 25
+  power: 30
+  pp: 5

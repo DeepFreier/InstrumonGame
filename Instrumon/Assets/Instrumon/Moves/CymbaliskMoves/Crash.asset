@@ -17,3 +17,4 @@ MonoBehaviour:
     of noise to attack it's opponent.
   type: 2
   power: 20
+  pp: 10
