@@ -11,8 +11,10 @@ public class ProgressFlags : MonoBehaviour
 
     [SerializeField]
     public static GameObject player;
+    private static List<Instrumon> playerparty;
 
     public static GameObject opponent;
+    private static List<Instrumon> opponentparty;
 
     public static ProgressFlags Instance { get; private set; }
 
@@ -24,6 +26,20 @@ public class ProgressFlags : MonoBehaviour
     {
         Instance = this;
         player = GameObject.Find("Player");
+        playerparty = player.GetComponent<PlayerController>().playerparty;
+
+        
+
+        if (Flag == 1)
+        {
+            GameObject opponent = GameObject.Find("SeadockFight_NPC");
+            opponentparty = opponent.GetComponent<MusicianNPC_Controller>().mnpcparty;
+            
+        }
+        else
+        {
+            opponentparty = new List<Instrumon>();
+        }
     }
 
     private void Start()
@@ -31,26 +47,14 @@ public class ProgressFlags : MonoBehaviour
         
     }
 
-    public static List<Instrumon> returnPlyrPrty()
+    public static List<Instrumon> ReturnPlyrPrty()
     {
-        List<Instrumon> PlayerParty = player.GetComponent<PlayerController>().playerparty;
-        return PlayerParty;
+        return playerparty;
     }
 
-    public static List<Instrumon> returnOppPrty()
+    public static List<Instrumon> ReturnOppPrty()
     {
-        List<Instrumon> OppParty;
-
-        if(Flag == 1)
-        {
-            GameObject opponent = GameObject.Find("SeadockFight_NPC");
-            OppParty = opponent.GetComponent<NPCController>().npcparty;
-            return OppParty;
-        }
-        else
-        {
-            return new List<Instrumon>();
-        }
+        return opponentparty;
     }
 
 

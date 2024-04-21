@@ -60,6 +60,7 @@ public class DialogueManager : MonoBehaviour
                 dialogueBox.SetActive(false);
                 currentLine = 0;
                 OnHideDialogue?.Invoke();
+                MusicianNPC_Controller.Dialoguedone = true;
             }
             
         }

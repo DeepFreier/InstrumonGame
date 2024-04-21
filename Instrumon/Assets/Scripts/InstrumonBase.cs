@@ -6,7 +6,7 @@ using UnityEngine;
 
 public class InstrumonBase : ScriptableObject
 {
-    [SerializeField] string instrumonName;
+    [SerializeField]public string instrumonName;
 
     [TextArea]
     [SerializeField] string description;

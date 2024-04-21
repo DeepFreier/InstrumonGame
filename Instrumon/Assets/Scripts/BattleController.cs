@@ -28,21 +28,21 @@ public class BattleController : MonoBehaviour
     public TextMeshProUGUI oppTotalHealthText;
 
     //player variables
-    public static List<Instrumon> playerParty;
-    public static Instrumon playerCurrentMon;// = playerParty[0];
-    public Sprite playerSprite = playerCurrentMon.Base.FrontSprite;
-    private String playerName = playerCurrentMon.Base.Name;
+    public static List<Instrumon> playerParty = ProgressFlags.ReturnPlyrPrty();
+    public static Instrumon playerCurrentMon = playerParty[0];
+    public Sprite playerSprite;
+    private String playerName = playerCurrentMon.Base.instrumonName;
     private int playerCurrentHP = playerCurrentMon.Base.CurrentHP;
     private int playerMonHP = playerCurrentMon.MaxHP;
     private int playerMonAtk = playerCurrentMon.Attack;
     private int PlayerMonSpd = playerCurrentMon.Speed;
     
     //cpu variables
-    public static List<Instrumon> oppParty;
-    public static Instrumon oppCurrentMon;// = oppParty[0];
+    public static List<Instrumon> oppParty = ProgressFlags.ReturnOppPrty();
+    public static Instrumon oppCurrentMon = oppParty[0];
     public int oppCurrentIndex = 0;
     public Sprite oppSprite = oppCurrentMon.Base.FrontSprite;
-    private String oppName = oppCurrentMon.Base.Name;
+    private String oppName = oppCurrentMon.Base.instrumonName;
     private int oppMonHP = oppCurrentMon.MaxHP;
     private int oppMonAtk = oppCurrentMon.Attack;
     private int OpponentMonSpd = oppCurrentMon.Speed;

@@ -15,7 +15,7 @@ MonoBehaviour:
   instrumonName: Locello
   description: 'Despite being small in size, the music Locello can make using it''s
     bow-like arms sound more professional than any human orchestra. '
-  frontSprite: {fileID: 0}
+  frontSprite: {fileID: 21300000, guid: bd8a8f20f63bc0e43b92b345d0e9dcbf, type: 3}
   type: 0
   maxHP: 40
   attack: 70

@@ -17,9 +17,9 @@ MonoBehaviour:
     a deep slumber from the peaceful playing of Guitowl high up in the trees. Many
     travelers who fall asleep this way often find a bit of their food missing when
     they wake up.
-  frontSprite: {fileID: 0}
+  frontSprite: {fileID: 21300000, guid: bd8a8f20f63bc0e43b92b345d0e9dcbf, type: 3}
   type: 0
-  maxHP: 11
-  attack: 6
-  speed: 6
+  maxHP: 50
+  attack: 30
+  speed: 20
   currentHP: 50
