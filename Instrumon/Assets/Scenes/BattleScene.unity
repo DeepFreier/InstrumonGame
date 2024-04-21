@@ -1409,6 +1409,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cbe4a9677d058f84dbe84b31814ffebf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  descriptionText: {fileID: 2052813605}
   playerSpriteHolder: {fileID: 152433222}
   playerNameText: {fileID: 2000976300}
   playerHealthBar: {fileID: 1309865915}

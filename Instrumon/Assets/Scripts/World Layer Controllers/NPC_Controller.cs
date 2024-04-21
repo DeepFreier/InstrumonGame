@@ -11,8 +11,7 @@ public class NPCController : MonoBehaviour, Interactable
 
     [SerializeField] Dialogue dialog;
 
-    [SerializeField]
-    public List<Instrumon> npcparty;
+    
 
     //Calls the Dialogue when the player interacts with the NPC
     public void Interact()

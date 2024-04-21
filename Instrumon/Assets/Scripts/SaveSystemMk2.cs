@@ -66,6 +66,7 @@ public class SaveSystemMk2 : MonoBehaviour
         {
             Debug.Log("Position Tracker File Not Found. Loading new game.");
             SceneManager.LoadSceneAsync(1);
+            Debug.Log("Progress Flag:" + ProgressFlags.Flag);
         }
 
     }

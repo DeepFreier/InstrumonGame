@@ -16,7 +16,7 @@ MonoBehaviour:
   description: Tarampani are extremely stealthy hunters, often hiding in dark corners
     or in tall grass. Tarampani like to surprise its prey and use it's mallet-like
     legs to attack.
-  frontSprite: {fileID: 0}
+  frontSprite: {fileID: 21300000, guid: 90f38a26f101d414da6b55b1340b6e6c, type: 3}
   type: 2
   maxHP: 45
   attack: 50
