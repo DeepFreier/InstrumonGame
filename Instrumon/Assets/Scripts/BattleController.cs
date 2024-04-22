@@ -39,6 +39,10 @@ public class BattleController : MonoBehaviour
     public GameObject monList;
     public GameObject monBackBtn;
 
+
+    //Audio Manager
+    AudioManager audioManager;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -68,10 +72,17 @@ public class BattleController : MonoBehaviour
         oppTotalHealthText.text = oppCurrentMon.Base.MaxHP.ToString();
     }
 
-    // Update is called once per frame
-    void Update()
+    private void Awake()
     {
-        
+        audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<AudioManager>();
+    }
+
+    // Update is called once per frame
+    void Update()  
+    {
+        if(oppCurrentMon.IDValue == 0)  {  //This will check which instrumon is in battle based off the id
+
+        }
     }
 
     //is called when all of the opponent's mons die
