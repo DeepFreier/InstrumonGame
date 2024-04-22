@@ -42,6 +42,17 @@ public class BattleController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        if (playerCurrentMon.Base.CurrentHP <= 0)
+        {
+            foreach (Instrumon mon in playerParty)
+            {
+                if (mon.Base.CurrentHP > 0)
+                {
+                    playerCurrentMon = mon;
+                    break;
+                }
+            }
+        }
         descriptionText.text = "What will you do?";
         //Displays the right things on screen at the start of battle for the player
         playerSpriteHolder.sprite = playerCurrentMon.Base.FrontSprite;
@@ -50,11 +61,6 @@ public class BattleController : MonoBehaviour
         playerTotalHealthText.text = playerCurrentMon.Base.MaxHP.ToString();
 
         //... and the opponent
-        foreach (Instrumon mon in oppParty) // this is here for retrying battles
-        {
-            oppCurrentMon = mon;
-            healOppDamage(100000);
-        }
         oppCurrentMon = oppParty[oppCurrentIndex];
         oppSpriteHolder.sprite = oppCurrentMon.Base.FrontSprite;
         oppNameText.text = oppCurrentMon.Base.Name.ToString();
@@ -331,7 +337,7 @@ public class BattleController : MonoBehaviour
         {
             playerSwitch(3);
         }
-        if (playerParty[2].Base.CurrentHP <= 0)
+        if (playerParty[3].Base.CurrentHP <= 0)
         {
             descriptionText.text = playerParty[3].Base.Name + " isn't fit for battle!";
         }
