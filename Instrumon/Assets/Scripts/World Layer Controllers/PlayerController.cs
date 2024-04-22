@@ -35,9 +35,13 @@ public class PlayerController : MonoBehaviour
         foreach (var instrumon in playerparty)
         {
             instrumon.LevelSet(playerlevel);
-            instrumon.Base.MaxHP = instrumon.MaxHP;
-            instrumon.Base.Attack = instrumon.Attack;
-            instrumon.Base.Speed = instrumon.Speed;
+            if (playerlevel != 1) 
+            {
+                instrumon.Base.MaxHP = instrumon.MaxHP;
+                instrumon.Base.Attack = instrumon.Attack;
+                instrumon.Base.Speed = instrumon.Speed;
+            }
+            
         }
         Debug.Log("Party Updated");
     }

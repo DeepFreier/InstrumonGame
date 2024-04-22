@@ -20,6 +20,7 @@ public class InstrumonBase : ScriptableObject
     [SerializeField] int attack;
     [SerializeField] int speed;
     [SerializeField] int currentHP;
+    [SerializeField] List<LearnedMoves> learnedMoves;
 
     public string Name {
         get { return name; }
@@ -56,8 +57,23 @@ public class InstrumonBase : ScriptableObject
         set { currentHP = value;}
     }
 
-    
+    public List<LearnedMoves> LearnedMoves{
+        get { return learnedMoves;}
+    }
 
+}
+
+[System.Serializable]
+public class LearnedMoves {
+    [SerializeField] MoveBase moveBase;
+    [SerializeField] int level;
+
+    public MoveBase Base {
+        get { return moveBase; }
+    }
+    public int Level {
+        get { return level; }
+    }
 }
 
 //Lists all possible Instrumon typings
