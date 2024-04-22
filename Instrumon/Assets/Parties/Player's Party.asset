@@ -16,7 +16,7 @@ MonoBehaviour:
   PartyID: 0
   level: 1
   Instrumons:
-  - _base: {fileID: 11400000, guid: 9dc317a16efa61a438ba87b3c4f1a350, type: 2}
+  - _base: {fileID: 11400000, guid: 93d66fa7d92f099439e8910e7e97b30f, type: 2}
     level: 1
   - _base: {fileID: 11400000, guid: 5c1b5e6ec86c4c3499d369b200064f8e, type: 2}
     level: 1
