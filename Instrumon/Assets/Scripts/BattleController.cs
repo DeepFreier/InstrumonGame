@@ -337,7 +337,7 @@ public class BattleController : MonoBehaviour
         {
             playerSwitch(3);
         }
-        if (playerParty[2].Base.CurrentHP <= 0)
+        if (playerParty[3].Base.CurrentHP <= 0)
         {
             descriptionText.text = playerParty[3].Base.Name + " isn't fit for battle!";
         }
