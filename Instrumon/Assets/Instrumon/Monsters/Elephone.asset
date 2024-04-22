@@ -18,7 +18,7 @@ MonoBehaviour:
     any aggressor with it's large stature and weight.
   frontSprite: {fileID: 21300000, guid: 90f38a26f101d414da6b55b1340b6e6c, type: 3}
   type: 3
-  maxHP: 70
-  attack: 15
-  speed: 15
-  currentHP: 70
+  maxHP: 80
+  attack: 50
+  speed: 50
+  currentHP: 80
