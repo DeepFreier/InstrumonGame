@@ -22,3 +22,12 @@ MonoBehaviour:
   attack: 15
   speed: 15
   currentHP: 70
+  learnedMoves:
+  - moveBase: {fileID: 11400000, guid: 6bd421fe72366aa4b81dd80bc554fdb5, type: 2}
+    level: 1
+  - moveBase: {fileID: 11400000, guid: a1adb3a8894d36e4d9314af56ba50124, type: 2}
+    level: 1
+  - moveBase: {fileID: 11400000, guid: 1941607cfff2cf043b7974de500ec3de, type: 2}
+    level: 1
+  - moveBase: {fileID: 11400000, guid: bd818b11cc75bb04ca5566ddba9584b6, type: 2}
+    level: 1
