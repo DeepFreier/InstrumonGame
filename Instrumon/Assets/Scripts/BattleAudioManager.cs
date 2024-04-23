@@ -1,10 +1,12 @@
 using UnityEngine;
 
+
 public class BattleAudioManager : MonoBehaviour {
 
     [Header("--------Audio Source---------")]
     [SerializeField] AudioSource battleMusic;
     [SerializeField] AudioSource instrumonSongs;
+    [SerializeField] AudioSource oppInstrumonSongs;
 
 
     [Header("--------Audio Clip------------")]
@@ -29,9 +31,25 @@ public class BattleAudioManager : MonoBehaviour {
     public AudioClip clarinetSong;
     public AudioClip celloIntro;
     public AudioClip celloSong;
+    public AudioClip saxophoneIntro;
+    public AudioClip saxophoneSong;
+    public AudioClip xylophoneIntro;
+    public AudioClip xylophoneSong;
 
-    public void PlayInstrumonSongs(AudioClip clip)
+    public void PlayInstrumonSongs(AudioClip clip1, AudioClip clip2)
     {
-        instrumonSongs.PlayOneShot(clip);
+
+        battleMusic.clip = clip2;
+        instrumonSongs.clip = clip1;
+        battleMusic.PlayScheduled(AudioSettings.dspTime + .05f);
+        instrumonSongs.PlayScheduled(AudioSettings.dspTime + .05f);
+
+    }
+
+    public void OppInstrumonSongs(AudioClip clip1)
+    {
+        oppInstrumonSongs.clip = clip1;
+        oppInstrumonSongs.PlayScheduled(AudioSettings.dspTime + .05f);
+
     }
 }
