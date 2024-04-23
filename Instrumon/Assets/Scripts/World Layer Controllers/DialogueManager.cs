@@ -20,7 +20,10 @@ public class DialogueManager : MonoBehaviour
     private void Awake()
     {
         Instance = this;
+        // Load saved settings
+        lettersPerSecond = PlayerPrefs.GetInt("TextSpeed", 40);
     }
+
 
     //Vars for the Dialogue
     Dialogue dialogue;
@@ -77,6 +80,10 @@ public class DialogueManager : MonoBehaviour
             yield return new WaitForSeconds(1f / lettersPerSecond);
         }
         isTyping = false;
+    }
+    public void SetLettersPerSecond(int newValue)
+    {
+        lettersPerSecond = newValue;
     }
 
     /* Function to set the letters per second value
