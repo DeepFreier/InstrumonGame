@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+<SaveDatabase xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <PlayerPosx>88</PlayerPosx>
+  <PlayerPosy>-100.7</PlayerPosy>
+  <Flag>1</Flag>
+  <MonHealth>
+    <int>50</int>
+    <int>0</int>
+    <int>0</int>
+    <int>0</int>
+  </MonHealth>
+</SaveDatabase>
