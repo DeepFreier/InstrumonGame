@@ -207,13 +207,6 @@ public class BattleController : MonoBehaviour
         descriptionText.text = "You win!";
         yield return new WaitForSeconds(5);
         SceneManager.LoadScene(1);
-        ProgressFlags.UpdateFlag(ProgressFlags.Flag + 1);
-        GameObject player = GameObject.Find("Player");
-        List<Instrumon> playerprty = player.GetComponentInParent<PlayerController>().playerparty;
-        for(int i = 0; i < 3; i++)
-        {
-            playerprty[i].Base.CurrentHP = playerParty[i].Base.CurrentHP;
-        }
     }
 
     //is called when all of the player's mons die
@@ -222,12 +215,6 @@ public class BattleController : MonoBehaviour
         descriptionText.text = "You lost...";
         yield return new WaitForSeconds(5);
         SceneManager.LoadScene(1);
-        GameObject player = GameObject.Find("Player");
-        List<Instrumon> playerprty = player.GetComponentInParent<PlayerController>().playerparty;
-        foreach(var instrumon in playerprty)
-        {
-            instrumon.Base.CurrentHP = 0;
-        }
     }
 
     //is called when player voluntarily switches mons

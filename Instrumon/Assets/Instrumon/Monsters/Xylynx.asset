@@ -16,13 +16,10 @@ MonoBehaviour:
   description: 
   frontSprite: {fileID: 0}
   type: 2
-  basemaxHP: 60
-  baseattack: 70
-  basespeed: 45
   maxHP: 60
   attack: 70
   speed: 45
-  currentHP: 60
+  currentHP: 0
   learnedMoves:
   - moveBase: {fileID: 11400000, guid: d16e25aeaf9a81a4fb38b10538769312, type: 2}
     level: 1
