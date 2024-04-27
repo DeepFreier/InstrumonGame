@@ -24,6 +24,9 @@ public class MenuManager : MonoBehaviour
     public PlayerController playerController;
     public Animator animator;
 
+    // Reference to GameController to access the GameState
+    public GameController gameController;
+
     /// <summary>
     /// Update is called once per frame.
     /// </summary>
@@ -32,8 +35,8 @@ public class MenuManager : MonoBehaviour
         // Check whether the pause menu is currently active
         bool isActive = pauseMenu.activeSelf;
 
-        // Toggle the pause menu state when the Escape key is pressed
-        if (Input.GetKeyDown(KeyCode.Escape))
+        // Toggle the pause menu state when the Escape key is pressed, only if GameState is FreeRoam
+        if (Input.GetKeyDown(KeyCode.Escape) && gameController.GetGameState() == GameState.FreeRoam)
         {
             TogglePauseMenu(!isActive);
         }
@@ -62,22 +65,15 @@ public class MenuManager : MonoBehaviour
         // Pause or resume the game and related components accordingly
         if (pause)
         {
-            //Debug.Log("The game is paused");
             Time.timeScale = 0f;
             playerController.enabled = false;
             animator.enabled = false;
         }
-        if (SceneManager.GetActiveScene().buildIndex == 0)
+        else
         {
             Time.timeScale = 1f;  // Resume the game
             playerController.enabled = true;  // Enable player movement
             animator.enabled = true;  // Enable animator
-        }
-        else
-        {
-            Time.timeScale = 1f;
-            playerController.enabled = true;
-            animator.enabled = true;
         }
 
         // Close all panels when pausing or resuming the game
