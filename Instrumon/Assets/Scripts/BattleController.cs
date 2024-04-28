@@ -89,22 +89,21 @@ public class BattleController : MonoBehaviour
     {
         if (playerCurrentMon.Base.instrumonName == "Corvinet")
         {
-
             audioManager.PlayInstrumonSongs(audioManager.clarinetSong, audioManager.drumLoop);
+            //AudioClip.FindObjectOfType<AudioSource>(audioManager.clarinetSong).mute = true;
+            //AudioClip.FindObjectOfType<AudioSource>(audioManager.clarinetSong).loop = true;
+            //AudioClip.FindObjectOfType<AudioSource>(audioManager.clarinetSong).Play();
         }
         if (playerCurrentMon.Base.instrumonName == "Trumpig")
         {
-
             audioManager.PlayInstrumonSongs(audioManager.trumpetSong, audioManager.drumLoop);
         }
         if (playerCurrentMon.Base.instrumonName == "Elephone")
         {
-
             audioManager.PlayInstrumonSongs(audioManager.saxophoneSong, audioManager.drumLoop);
         }
         if (playerCurrentMon.Base.instrumonName == "Flumingo")
         {
-
             audioManager.PlayInstrumonSongs(audioManager.fluteSong, audioManager.drumLoop);
         }
         if (playerCurrentMon.Base.instrumonName == "Guitowl")
@@ -117,22 +116,18 @@ public class BattleController : MonoBehaviour
         }
         if (playerCurrentMon.Base.instrumonName == "Tarampini")
         {
-
             audioManager.PlayInstrumonSongs(audioManager.timpaniSong, audioManager.drumLoop);
         }
         if (playerCurrentMon.Base.instrumonName == "Tortuba")
         {
-
             audioManager.PlayInstrumonSongs(audioManager.tubaSong, audioManager.drumLoop);
         }
         if (playerCurrentMon.Base.instrumonName == "Trombeaver")
         {
-
             audioManager.PlayInstrumonSongs(audioManager.tromboneSong, audioManager.drumLoop);
         }
         if (playerCurrentMon.Base.instrumonName == "Viperlin")
         {
-
             audioManager.PlayInstrumonSongs(audioManager.violinSong, audioManager.drumLoop);
         }
         if (playerCurrentMon.Base.instrumonName == "Xylynx")
