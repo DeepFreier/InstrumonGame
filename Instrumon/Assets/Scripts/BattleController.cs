@@ -328,9 +328,8 @@ public class BattleController : MonoBehaviour
             oppNameText.text = oppCurrentMon.Base.instrumonName.ToString();
             dealDamage(0);
             oppCurrentHealthText.text = oppCurrentMon.Base.CurrentHP.ToString();
-            oppTotalHealthText.text = oppCurrentMon.Base.Name.ToString();
-            OppSongs();
             oppTotalHealthText.text = oppCurrentMon.Base.MaxHP.ToString();
+            OppSongs();
         }
     }
 
