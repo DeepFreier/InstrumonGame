@@ -46,4 +46,8 @@ public class GameController : MonoBehaviour
 
             }
     }
+    public GameState GetGameState()
+    {
+        return state;
+    }
 }
