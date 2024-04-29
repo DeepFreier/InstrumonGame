@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d115aa147e1e63c49829a0bab20a559c, type: 3}
+  m_Name: Trumpig
+  m_EditorClassIdentifier: 
+  instrumonName: Trumpig
+  description: Trumpig are brash in nature and love playing in the mud. If a Trumpig
+    gets too much mud inside it's bell-shaped nose, it will play a very loud note
+    to launch the mud outwards.
+  frontSprite: {fileID: 21300000, guid: bd8a8f20f63bc0e43b92b345d0e9dcbf, type: 3}
+  type: 1
+  maxHP: 60
+  attack: 65
+  speed: 35
+  currentHP: 60
+  moves:
+  - moveBase: {fileID: 11400000, guid: ae1d8406b26d2834ab6b3fc983d5be8e, type: 2}
+    level: 1
+  - moveBase: {fileID: 11400000, guid: c6d34cff71b02ab44a77953c94370416, type: 2}
+    level: 1
+  - moveBase: {fileID: 11400000, guid: 4acfe147c8c47e04ebe40b550fe4dfc5, type: 2}
+    level: 1
+  - moveBase: {fileID: 11400000, guid: a81d4b5aac61d7e4496c1fe4a33a6eb3, type: 2}
+    level: 1

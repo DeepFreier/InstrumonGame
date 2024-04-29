@@ -1,0 +1,33 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d115aa147e1e63c49829a0bab20a559c, type: 3}
+  m_Name: Tortuba
+  m_EditorClassIdentifier: 
+  instrumonName: Tortuba
+  description: Usually sleeping 14 out of the 24 hours in a day, along with it's
+    lazy nature, it's not uncommon to find Tortuba laying about the same general
+    area for their entire life.
+  frontSprite: {fileID: 0}
+  type: 1
+  maxHP: 65
+  attack: 55
+  speed: 30
+  currentHP: 65
+  moves:
+  - moveBase: {fileID: 11400000, guid: 21e20dfd6a484104c90dbb4410f82875, type: 2}
+    level: 1
+  - moveBase: {fileID: 11400000, guid: fba1c27777d03be4490860e735f351da, type: 2}
+    level: 1
+  - moveBase: {fileID: 11400000, guid: 6705af45afa49cb478cc3137b2f905e9, type: 2}
+    level: 1
+  - moveBase: {fileID: 11400000, guid: 18f14d8052c7a9d4290eaa1e7aba19a7, type: 2}
+    level: 1

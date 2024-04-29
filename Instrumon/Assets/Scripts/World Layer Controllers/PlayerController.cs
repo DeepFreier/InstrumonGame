@@ -37,13 +37,30 @@ public class PlayerController : MonoBehaviour
             instrumon.LevelSet(playerlevel);
             if (playerlevel != 1) 
             {
+                instrumon.level = playerlevel;
                 instrumon.Base.MaxHP = instrumon.MaxHP;
                 instrumon.Base.Attack = instrumon.Attack;
                 instrumon.Base.Speed = instrumon.Speed;
             }
+            else
+            {
+                instrumon.level = playerlevel;
+                instrumon.Base.MaxHP = instrumon.Base.basemaxHP;
+                instrumon.Base.Attack = instrumon.Base.baseattack;
+                instrumon.Base.Speed = instrumon.Base.basespeed;
+            }
             
         }
         Debug.Log("Party Updated");
+    }
+
+    public void healparty()
+    {
+        foreach (var instrumon in playerparty)
+        {
+            instrumon.Base.CurrentHP = instrumon.Base.MaxHP;
+            Debug.Log(instrumon.Base.CurrentHP);
+        }
     }
 
     // Handles player input and movement

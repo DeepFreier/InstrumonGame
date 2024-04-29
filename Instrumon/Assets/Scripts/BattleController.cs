@@ -207,6 +207,7 @@ public class BattleController : MonoBehaviour
         descriptionText.text = "You win!";
         yield return new WaitForSeconds(5);
         SceneManager.LoadScene(1);
+        ProgressFlags.UpdateFlag(ProgressFlags.Flag + 1);
     }
 
     //is called when all of the player's mons die
