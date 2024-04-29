@@ -23,6 +23,7 @@ public class BattleAudioManager : MonoBehaviour {
     public AudioSource tubaInstrumon;
     public AudioSource tromboneInstrumon;
     public AudioSource trumpetInstrumon;
+    public AudioSource cymbalInstrumon;
 
     [Header("-------Opponent Audio Source--------")]
     public AudioSource oppClarinetInstrumon;
@@ -37,6 +38,7 @@ public class BattleAudioManager : MonoBehaviour {
     public AudioSource oppTubaInstrumon;
     public AudioSource oppTromboneInstrumon;
     public AudioSource oppTrumpetInstrumon;
+    public AudioSource oppCymbalInstrumon;
 
 
     [Header("--------Audio Clip------------")]
@@ -65,6 +67,7 @@ public class BattleAudioManager : MonoBehaviour {
     public AudioClip saxophoneSong;
     public AudioClip xylophoneIntro;
     public AudioClip xylophoneSong;
+    public AudioClip cymbalSong;
 
 
     private void Start()
@@ -104,6 +107,7 @@ public class BattleAudioManager : MonoBehaviour {
         violinInstrumon.PlayScheduled(AudioSettings.dspTime + .05f);
         celloInstrumon.PlayScheduled(AudioSettings.dspTime + .05f);
         guitarInstrumon.PlayScheduled(AudioSettings.dspTime + .05f);
+        cymbalInstrumon.PlayScheduled(AudioSettings.dspTime + .05f);
 
         //Starting opponents song
         oppClarinetInstrumon.PlayScheduled(AudioSettings.dspTime + .05f);
@@ -118,6 +122,7 @@ public class BattleAudioManager : MonoBehaviour {
         oppViolinInstrumon.PlayScheduled(AudioSettings.dspTime + .05f);
         oppCelloInstrumon.PlayScheduled(AudioSettings.dspTime + .05f);
         oppGuitarInstrumon.PlayScheduled(AudioSettings.dspTime + .05f);
+        oppCymbalInstrumon.PlayScheduled(AudioSettings.dspTime + .05f);
 
     }
 
@@ -136,8 +141,9 @@ public class BattleAudioManager : MonoBehaviour {
         pianoInstrumon.mute = true;
         timpaniInstrumon.mute = true;
         xylophoneInstrumon.mute = true;
+        cymbalInstrumon.mute = true;
 
-        
+
 
 
         if (BattleController.playerCurrentMon.Base.instrumonName == "Corvinet") {
@@ -173,6 +179,9 @@ public class BattleAudioManager : MonoBehaviour {
         if (BattleController.playerCurrentMon.Base.instrumonName == "Xylynx") {
             xylophoneInstrumon.mute = false;
         }
+        if (BattleController.playerCurrentMon.Base.instrumonName == "Cymbalisk") {
+            cymbalInstrumon.mute = false;
+        }
     }
 
 
@@ -191,6 +200,7 @@ public class BattleAudioManager : MonoBehaviour {
         oppPianoInstrumon.mute = true;
         oppTimpaniInstrumon.mute = true;
         oppXylophoneInstrumon.mute = true;
+        oppCymbalInstrumon.mute = true;
 
 
 
@@ -238,6 +248,10 @@ public class BattleAudioManager : MonoBehaviour {
         if (BattleController.oppCurrentMon.Base.instrumonName == "Xylynx")
         {
             oppXylophoneInstrumon.mute = false;
+        }
+        if (BattleController.oppCurrentMon.Base.instrumonName == "Cymbalisk")
+        {
+            oppCymbalInstrumon.mute = false;
         }
     }
 }
