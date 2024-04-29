@@ -12,21 +12,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d115aa147e1e63c49829a0bab20a559c, type: 3}
   m_Name: Flumingo
   m_EditorClassIdentifier: 
-  instrumonName: 
+  instrumonName: Flumingo
   description: 
-  frontSprite: {fileID: 0}
+  frontSprite: {fileID: 21300000, guid: 0734d7be9bee6514695657d3d733f848, type: 3}
   type: 3
   maxHP: 50
   attack: 60
   speed: 60
-  currentHP: 0
-  learnedMoves:
+  currentHP: 50
+  moves:
   - moveBase: {fileID: 11400000, guid: 8ec5d0f085978434a9bfe7d9ad7fcb1d, type: 2}
-    level: 1
+    level: 0
   - moveBase: {fileID: 11400000, guid: 792e1925e1a303f498497c2a13316946, type: 2}
-    level: 1
+    level: 0
   - moveBase: {fileID: 11400000, guid: 15455576ac7372c4fac0370e9a3ade40, type: 2}
-    level: 1
+    level: 0
   - moveBase: {fileID: 11400000, guid: 3426c86845aad5f45b6efffb5d048023, type: 2}
-    level: 1
-
+    level: 0
