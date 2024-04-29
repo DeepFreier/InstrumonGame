@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   instrumonName: Viperlin
   description: 
-  frontSprite: {fileID: 0}
+  frontSprite: {fileID: 21300000, guid: f27d162dd456d8145b404c1f4382409f, type: 3}
   type: 0
   maxHP: 55
   attack: 40

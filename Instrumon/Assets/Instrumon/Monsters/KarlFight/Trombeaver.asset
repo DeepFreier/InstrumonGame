@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   instrumonName: Trombeaver
   description: 
-  frontSprite: {fileID: 0}
+  frontSprite: {fileID: 21300000, guid: 37ceba67536a7f94b962804166d1fc9c, type: 3}
   type: 1
   maxHP: 70
   attack: 50

@@ -16,7 +16,7 @@ MonoBehaviour:
   description: Usually sleeping 14 out of the 24 hours in a day, along with it's
     lazy nature, it's not uncommon to find Tortuba laying about the same general
     area for their entire life.
-  frontSprite: {fileID: 0}
+  frontSprite: {fileID: 21300000, guid: f8c333eb3790cc14a829df71fcba2e3b, type: 3}
   type: 1
   maxHP: 65
   attack: 55
