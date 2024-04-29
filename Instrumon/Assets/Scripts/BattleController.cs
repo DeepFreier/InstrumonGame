@@ -50,7 +50,7 @@ public class BattleController : MonoBehaviour
 
         PlayerSongs();
         OppSongs();
-
+        oppCurrentIndex = 0;
 
 
         if (playerCurrentMon.Base.CurrentHP <= 0)
@@ -64,6 +64,14 @@ public class BattleController : MonoBehaviour
                 }
             }
         }
+        foreach (Instrumon mon in oppParty)
+        {
+            if (mon.Base.CurrentHP < mon.Base.MaxHP)
+            {
+                mon.Base.CurrentHP = mon.Base.MaxHP;
+            }
+        }
+
 
         descriptionText.text = "What will you do?";
         //Displays the right things on screen at the start of battle for the player
@@ -71,6 +79,8 @@ public class BattleController : MonoBehaviour
         playerNameText.text = playerCurrentMon.Base.Name.ToString();
         playerCurrentHealthText.text = playerCurrentMon.Base.CurrentHP.ToString();
         playerTotalHealthText.text = playerCurrentMon.Base.MaxHP.ToString();
+        playerHealthBar.fillAmount = (float)playerCurrentMon.Base.CurrentHP / playerCurrentMon.Base.MaxHP;
+        playerCurrentHealthText.text = playerCurrentMon.Base.CurrentHP.ToString();
 
         //... and the opponent
         oppCurrentMon = oppParty[oppCurrentIndex];
@@ -78,6 +88,8 @@ public class BattleController : MonoBehaviour
         oppNameText.text = oppCurrentMon.Base.Name.ToString();
         oppCurrentHealthText.text = oppCurrentMon.Base.CurrentHP.ToString();
         oppTotalHealthText.text = oppCurrentMon.Base.MaxHP.ToString();
+        oppHealthBar.fillAmount = (float)oppCurrentMon.Base.CurrentHP / oppCurrentMon.Base.MaxHP;
+        oppCurrentHealthText.text = oppCurrentMon.Base.CurrentHP.ToString();
     }
 
     private void Awake()
@@ -112,7 +124,7 @@ public class BattleController : MonoBehaviour
         {
             audioManager.PlayInstrumonSongs(audioManager.celloSong, audioManager.drumLoop);
         }
-        if (playerCurrentMon.Base.instrumonName == "Tarampini")
+        if (playerCurrentMon.Base.instrumonName == "Tarampani")
         {
             audioManager.PlayInstrumonSongs(audioManager.timpaniSong, audioManager.drumLoop);
         }
@@ -164,7 +176,7 @@ public class BattleController : MonoBehaviour
         {
             audioManager.OppInstrumonSongs(audioManager.celloSong);
         }
-        if (oppCurrentMon.Base.instrumonName == "Tarampini")
+        if (oppCurrentMon.Base.instrumonName == "Tarampani")
         {
             audioManager.OppInstrumonSongs(audioManager.timpaniSong);
         }
@@ -187,13 +199,16 @@ public class BattleController : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()  {}
+    void Update()
+    {
+        
+    }
 
     //is called when all of the opponent's mons die
     public IEnumerator winBattle()
     {
         descriptionText.text = "You win!";
-        yield return new WaitForSeconds(5);
+        yield return new WaitForSeconds(3);
         SceneManager.LoadScene(1);
         ProgressFlags.UpdateFlag(ProgressFlags.Flag + 1);
     }
@@ -202,28 +217,31 @@ public class BattleController : MonoBehaviour
     public IEnumerator loseBattle()
     {
         descriptionText.text = "You lost...";
-        yield return new WaitForSeconds(5);
+        yield return new WaitForSeconds(3);
         SceneManager.LoadScene(1);
     }
 
     //is called when player voluntarily switches mons
-    public void playerSwitch(int monIndex)
+    public IEnumerator playerSwitch(int monIndex)
     {
+        descriptionText.text = "Go " + playerParty[monIndex].Base.instrumonName + "!";
+        yield return new WaitForSeconds(1);
         playerCurrentMon = playerParty[monIndex];
         playerSpriteHolder.sprite = playerCurrentMon.Base.FrontSprite;
-        playerNameText.text = playerCurrentMon.Base.Name.ToString();
-        playerCurrentHealthText.text = playerCurrentMon.Base.CurrentHP.ToString();
+        playerNameText.text = playerCurrentMon.Base.instrumonName.ToString();
         playerTotalHealthText.text = playerCurrentMon.Base.MaxHP.ToString();
+        takeDamage(0);
         monList.SetActive(false);
         PlayerSongs();
 
+        descriptionText.text = oppCurrentMon.Base.instrumonName + " found an openning!";
         oppTurn();
     }
     
     //is called when player's mon dies
     public void playerDeathSwitch()
     {
-        descriptionText.text = playerCurrentMon.Base.Name.ToString() + " has fainted, please choose another Instrumon to battle.";
+        descriptionText.text = playerCurrentMon.Base.instrumonName.ToString() + " has fainted, please choose another Instrumon to battle.";
         monList.SetActive(true);
         monBackBtn.SetActive(false);
     }
@@ -233,13 +251,14 @@ public class BattleController : MonoBehaviour
     {
         if (playerFirst())
         {
-            float dmgVal = calcDamage(oppCurrentMon.MaxHP, playerCurrentMon.Attack, playerCurrentMon.Moves[attackIndex]);
+            
+            float dmgVal = calcDamage(oppCurrentMon.MaxHP, playerCurrentMon.Attack, playerCurrentMon.Base.Moves[attackIndex]);
             dealDamage(dmgVal);
-
+            yield return new WaitForSeconds(1);
             if (oppCurrentMon.Base.CurrentHP > 0) //if the opp mon dies, force a switch
             {
                 oppTurn();
-                descriptionText.text = playerCurrentMon.Base.Name + " and " + oppCurrentMon.Base.Name +
+                descriptionText.text = playerCurrentMon.Base.instrumonName + " and " + oppCurrentMon.Base.instrumonName +
                     " traded blows!";
             }
             else
@@ -251,13 +270,17 @@ public class BattleController : MonoBehaviour
         else
         {
             oppTurn();
-
+            yield return new WaitForSeconds(1);
             if (playerCurrentMon.Base.CurrentHP > 0) //if the player mon dies, force a switch
             {
-                float dmgVal = calcDamage(oppCurrentMon.MaxHP, playerCurrentMon.Attack, playerCurrentMon.Moves[attackIndex]);
+                float dmgVal = calcDamage(oppCurrentMon.MaxHP, playerCurrentMon.Attack, playerCurrentMon.Base.Moves[attackIndex]);
                 dealDamage(dmgVal);
-                descriptionText.text = oppCurrentMon.Base.Name + " and " + playerCurrentMon.Base.Name +
+                descriptionText.text = oppCurrentMon.Base.instrumonName + " and " + playerCurrentMon.Base.instrumonName +
                     " traded blows!";
+                if (oppCurrentMon.Base.CurrentHP <= 0)
+                {
+                    oppSwitch();
+                }
             }
             else
             {
@@ -278,16 +301,14 @@ public class BattleController : MonoBehaviour
             }
         }
         atkList.SetActive(false);
-        yield return new WaitForSeconds(5);
-        descriptionText.text = "What's the next move?";
     }
 
     //is called by execute turn depending on who attacks first according to
     //playerFirst()
     public void oppTurn()
     {
-        int randVal = oppCurrentMon.Moves.Count;
-        Move selMove = oppCurrentMon.Moves[random.Next(0, randVal)];
+        int randVal = oppCurrentMon.Base.Moves.Count;
+        Moves selMove = oppCurrentMon.Base.Moves[random.Next(0, randVal)];
         float dmgVal = calcDamage(oppCurrentMon.MaxHP, oppCurrentMon.Attack, selMove);
         takeDamage(dmgVal);
     }
@@ -304,11 +325,12 @@ public class BattleController : MonoBehaviour
         {
             oppCurrentMon = oppParty[oppCurrentIndex];
             oppSpriteHolder.sprite = oppCurrentMon.Base.FrontSprite;
-            oppNameText.text = oppCurrentMon.Base.Name.ToString();
+            oppNameText.text = oppCurrentMon.Base.instrumonName.ToString();
             dealDamage(0);
             oppCurrentHealthText.text = oppCurrentMon.Base.CurrentHP.ToString();
             oppTotalHealthText.text = oppCurrentMon.Base.Name.ToString();
             OppSongs();
+            oppTotalHealthText.text = oppCurrentMon.Base.MaxHP.ToString();
         }
     }
 
@@ -326,9 +348,9 @@ public class BattleController : MonoBehaviour
     }
     
     //damage value calc
-    public int calcDamage(int totalHP, int atkStat, Move Move)
+    public int calcDamage(int totalHP, int atkStat, Moves Move)
     {
-        return (int)Math.Ceiling((decimal)(Math.Abs(atkStat + Move.Base.Power - totalHP / 2)));
+        return (int)Math.Ceiling((decimal)(Math.Abs(atkStat/4 + Move.Base.Power - totalHP / 2)));
     }
 
     //damage done to player
@@ -339,7 +361,7 @@ public class BattleController : MonoBehaviour
         {
             playerCurrentMon.Base.CurrentHP = 0;
         }
-        playerHealthBar.fillAmount = playerCurrentMon.Base.CurrentHP / playerCurrentMon.Base.MaxHP;
+        playerHealthBar.fillAmount = (float)playerCurrentMon.Base.CurrentHP / playerCurrentMon.Base.MaxHP;
         playerCurrentHealthText.text = playerCurrentMon.Base.CurrentHP.ToString();
     }
 
@@ -351,7 +373,7 @@ public class BattleController : MonoBehaviour
         {
             oppCurrentMon.Base.CurrentHP = 0;
         }
-        oppHealthBar.fillAmount = oppCurrentMon.Base.CurrentHP / oppCurrentMon.Base.MaxHP;
+        oppHealthBar.fillAmount = (float)oppCurrentMon.Base.CurrentHP / oppCurrentMon.Base.MaxHP;
         oppCurrentHealthText.text = oppCurrentMon.Base.CurrentHP.ToString();
     }
 
@@ -363,7 +385,7 @@ public class BattleController : MonoBehaviour
         {
             playerCurrentMon.Base.CurrentHP = playerCurrentMon.Base.MaxHP;
         }
-        playerHealthBar.fillAmount = playerCurrentMon.Base.CurrentHP / playerCurrentMon.Base.MaxHP;
+        playerHealthBar.fillAmount = (float)playerCurrentMon.Base.CurrentHP / playerCurrentMon.Base.MaxHP;
         playerCurrentHealthText.text = playerCurrentMon.Base.CurrentHP.ToString();
     }
 
@@ -375,7 +397,7 @@ public class BattleController : MonoBehaviour
         {
             oppCurrentMon.Base.CurrentHP = oppCurrentMon.Base.MaxHP;
         }
-        oppHealthBar.fillAmount = oppCurrentMon.Base.CurrentHP / oppCurrentMon.Base.MaxHP;
+        oppHealthBar.fillAmount = (float)oppCurrentMon.Base.CurrentHP / oppCurrentMon.Base.MaxHP;
         oppCurrentHealthText.text = oppCurrentMon.Base.CurrentHP.ToString();
     }
 
@@ -405,15 +427,15 @@ public class BattleController : MonoBehaviour
     {
         if (playerParty[0].Base.CurrentHP > 0 & playerCurrentMon != playerParty[0])
         {
-            playerSwitch(0);
+            StartCoroutine(playerSwitch(0));
         }
         if (playerParty[0].Base.CurrentHP <= 0)
         {
-            descriptionText.text = playerParty[0].Base.Name + " isn't fit for battle!";
+            descriptionText.text = playerParty[0].Base.instrumonName + " doesn't have enough HP to fight!";
         }
         if (playerCurrentMon == playerParty[0])
         {
-            descriptionText.text = playerCurrentMon.Base.Name + " is already in battle";
+            descriptionText.text = playerCurrentMon.Base.instrumonName + " is already in battle!";
         }
     }
 
@@ -421,15 +443,15 @@ public class BattleController : MonoBehaviour
     {
         if (playerParty[1].Base.CurrentHP > 0 & playerCurrentMon != playerParty[1])
         {
-            playerSwitch(1);
+            StartCoroutine(playerSwitch(1));
         }
         if (playerParty[1].Base.CurrentHP <= 0)
         {
-            descriptionText.text = playerParty[1].Base.Name + " isn't fit for battle!";
+            descriptionText.text = playerParty[1].Base.instrumonName + " doesn't have enough HP to fight!";
         }
         if (playerCurrentMon == playerParty[1])
         {
-            descriptionText.text = playerCurrentMon.Base.Name + " is already in battle!";
+            descriptionText.text = playerCurrentMon.Base.instrumonName + " is already in battle!";
         }
     }
 
@@ -437,15 +459,15 @@ public class BattleController : MonoBehaviour
     {
         if (playerParty[2].Base.CurrentHP > 0 & playerCurrentMon != playerParty[2])
         {
-            playerSwitch(2);
+            StartCoroutine(playerSwitch(2));
         }
         if (playerParty[2].Base.CurrentHP <= 0)
         {
-            descriptionText.text = playerParty[2].Base.Name + " isn't fit for battle!";
+            descriptionText.text = playerParty[2].Base.instrumonName + " doesn't have enough HP to fight!";
         }
         if (playerCurrentMon == playerParty[2])
         {
-            descriptionText.text = playerCurrentMon.Base.Name + " is already in battle!";
+            descriptionText.text = playerCurrentMon.Base.instrumonName + " is already in battle!";
         }
     }
 
@@ -453,15 +475,15 @@ public class BattleController : MonoBehaviour
     {
         if (playerParty[3].Base.CurrentHP > 0 & playerCurrentMon != playerParty[3])
         {
-            playerSwitch(3);
+            StartCoroutine(playerSwitch(3));
         }
         if (playerParty[3].Base.CurrentHP <= 0)
         {
-            descriptionText.text = playerParty[3].Base.Name + " isn't fit for battle!";
+            descriptionText.text = playerParty[3].Base.instrumonName + " doesn't have enough HP to fight!";
         }
         if (playerCurrentMon == playerParty[3])
         {
-            descriptionText.text = playerCurrentMon.Base.Name + " is already in battle!";
+            descriptionText.text = playerCurrentMon.Base.instrumonName + " is already in battle!";
         }
     }
 

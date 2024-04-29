@@ -595,8 +595,8 @@ Transform:
   m_GameObject: {fileID: 152433221}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -244, y: 12.999992, z: -91.05352}
-  m_LocalScale: {x: 350, y: 350, z: 2.3333335}
+  m_LocalPosition: {x: -232, y: 12.999992, z: -91.05352}
+  m_LocalScale: {x: 240, y: 240, z: 1.6000001}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 315521746}
@@ -1420,8 +1420,7 @@ MonoBehaviour:
   oppHealthBar: {fileID: 1651596743}
   oppCurrentHealthText: {fileID: 285204042}
   oppTotalHealthText: {fileID: 997472972}
-  oppCurrentIndex: 0
-  atkList: {fileID: 0}
+  atkList: {fileID: 1474609456}
   monList: {fileID: 1813290065}
   monBackBtn: {fileID: 1833478713}
 --- !u!1 &327407177
@@ -7697,7 +7696,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 206, y: 136, z: -91.05352}
-  m_LocalScale: {x: 350, y: 350, z: 2.3333333}
+  m_LocalScale: {x: 240, y: 240, z: 1.6}
   m_ConstrainProportionsScale: 1
   m_Children: []
   m_Father: {fileID: 315521746}
