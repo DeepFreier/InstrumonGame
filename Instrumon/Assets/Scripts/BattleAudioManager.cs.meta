@@ -3,7 +3,35 @@ guid: 5012fee057117b744a13f793996ee195
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2
-  defaultReferences: []
+  defaultReferences:
+  - battleMusic: {instanceID: 0}
+  - instrumonSongs: {instanceID: 0}
+  - oppInstrumonSongs: {instanceID: 0}
+  - drumLoop: {fileID: 8300000, guid: 0ddceafbf2039a946a531d24ce411a57, type: 3}
+  - violinIntro: {instanceID: 0}
+  - violinSong: {fileID: 8300000, guid: 37460011201182043936f06a47a15519, type: 3}
+  - tubaIntro: {instanceID: 0}
+  - tubaSong: {instanceID: 0}
+  - trumpetIntro: {instanceID: 0}
+  - trumpetSong: {instanceID: 0}
+  - tromboneIntro: {instanceID: 0}
+  - tromboneSong: {instanceID: 0}
+  - timpaniIntro: {instanceID: 0}
+  - timpaniSong: {instanceID: 0}
+  - pianoIntro: {instanceID: 0}
+  - pianoSong: {instanceID: 0}
+  - guitarIntro: {instanceID: 0}
+  - guitarSong: {instanceID: 0}
+  - fluteIntro: {instanceID: 0}
+  - fluteSong: {instanceID: 0}
+  - clarinetIntro: {instanceID: 0}
+  - clarinetSong: {fileID: 8300000, guid: 022297741022e354c8234acde6561a28, type: 3}
+  - celloIntro: {instanceID: 0}
+  - celloSong: {fileID: 8300000, guid: 50c91f10a46ff1d4ab0ab09dab46d457, type: 3}
+  - saxophoneIntro: {instanceID: 0}
+  - saxophoneSong: {instanceID: 0}
+  - xylophoneIntro: {instanceID: 0}
+  - xylophoneSong: {instanceID: 0}
   executionOrder: 0
   icon: {instanceID: 0}
   userData: 
