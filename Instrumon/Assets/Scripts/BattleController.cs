@@ -87,12 +87,10 @@ public class BattleController : MonoBehaviour
 
     void PlayerSongs()
     {
+
         if (playerCurrentMon.Base.instrumonName == "Corvinet")
         {
             audioManager.PlayInstrumonSongs(audioManager.clarinetSong, audioManager.drumLoop);
-            //AudioClip.FindObjectOfType<AudioSource>(audioManager.clarinetSong).mute = true;
-            //AudioClip.FindObjectOfType<AudioSource>(audioManager.clarinetSong).loop = true;
-            //AudioClip.FindObjectOfType<AudioSource>(audioManager.clarinetSong).Play();
         }
         if (playerCurrentMon.Base.instrumonName == "Trumpig")
         {
@@ -168,27 +166,22 @@ public class BattleController : MonoBehaviour
         }
         if (oppCurrentMon.Base.instrumonName == "Tarampini")
         {
-
             audioManager.OppInstrumonSongs(audioManager.timpaniSong);
         }
         if (oppCurrentMon.Base.instrumonName == "Tortuba")
         {
-
             audioManager.OppInstrumonSongs(audioManager.tubaSong);
         }
         if (oppCurrentMon.Base.instrumonName == "Trombeaver")
         {
-
             audioManager.OppInstrumonSongs(audioManager.tromboneSong);
         }
         if (oppCurrentMon.Base.instrumonName == "Viperlin")
         {
-
             audioManager.OppInstrumonSongs(audioManager.violinSong);
         }
         if (oppCurrentMon.Base.instrumonName == "Xylynx")
         {
-
             audioManager.OppInstrumonSongs(audioManager.xylophoneSong);
         }
     }
@@ -221,6 +214,7 @@ public class BattleController : MonoBehaviour
         playerCurrentHealthText.text = playerCurrentMon.Base.CurrentHP.ToString();
         playerTotalHealthText.text = playerCurrentMon.Base.MaxHP.ToString();
         monList.SetActive(false);
+        PlayerSongs();
 
         oppTurn();
     }
@@ -313,6 +307,7 @@ public class BattleController : MonoBehaviour
             dealDamage(0);
             oppCurrentHealthText.text = oppCurrentMon.Base.CurrentHP.ToString();
             oppTotalHealthText.text = oppCurrentMon.Base.Name.ToString();
+            OppSongs();
         }
     }
 

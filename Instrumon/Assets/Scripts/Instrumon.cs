@@ -9,7 +9,7 @@ public class Instrumon
 
     [SerializeField] int InstrumonLevel;
 
-    [SerializeField] List<LearnedMoves> learnedMoves;
+    [SerializeField] List<Moves> moves;
 
      public int level;
 
@@ -41,7 +41,7 @@ public class Instrumon
     public Instrumon(InstrumonBase iBase){
         _base = iBase;
         Moves = new List<Move>();
-        foreach (var move in _base.LearnedMoves){
+        foreach (var move in _base.Moves){
             if (move.Level <= level)
                 Moves.Add(new Move(move.Base));
         }
