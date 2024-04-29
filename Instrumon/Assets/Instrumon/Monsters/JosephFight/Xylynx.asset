@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d115aa147e1e63c49829a0bab20a559c, type: 3}
+  m_Name: Xylynx
+  m_EditorClassIdentifier: 
+  instrumonName: Xylynx
+  description: 
+  frontSprite: {fileID: 0}
+  type: 0
+  maxHP: 60
+  attack: 70
+  speed: 45
+  currentHP: 60
+  moves:
+  - moveBase: {fileID: 11400000, guid: d16e25aeaf9a81a4fb38b10538769312, type: 2}
+    level: 1
+  - moveBase: {fileID: 11400000, guid: 419659b898edb354ba276db7ad46a59e, type: 2}
+    level: 1
+  - moveBase: {fileID: 11400000, guid: b9ae0188caa47814baa3c087bb48b873, type: 2}
+    level: 1
+  - moveBase: {fileID: 11400000, guid: 1fe450bde487ebb4abdac53db4f2a4f0, type: 2}
+    level: 1

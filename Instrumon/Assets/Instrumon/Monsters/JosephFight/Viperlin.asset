@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d115aa147e1e63c49829a0bab20a559c, type: 3}
+  m_Name: Viperlin
+  m_EditorClassIdentifier: 
+  instrumonName: Viperlin
+  description: 
+  frontSprite: {fileID: 0}
+  type: 0
+  maxHP: 55
+  attack: 40
+  speed: 80
+  currentHP: 55
+  moves:
+  - moveBase: {fileID: 11400000, guid: 6efc649096101fc48932269295eec3be, type: 2}
+    level: 1
+  - moveBase: {fileID: 11400000, guid: c6bce927d6fbdee48b6a8d5cb83c277d, type: 2}
+    level: 1
+  - moveBase: {fileID: 11400000, guid: 8f84f276e39dcb74397c82a942d6c2e2, type: 2}
+    level: 1
+  - moveBase: {fileID: 11400000, guid: 45ab6868fdc96ab4cb17076fdc90cdb3, type: 2}
+    level: 1
