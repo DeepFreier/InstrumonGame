@@ -40,7 +40,7 @@ public class ButtonUpdater : MonoBehaviour
         {
             instrumonName1Text.text = instrumons[0].Base.instrumonName;
             instrumonLevelText1.text = "Lvl " + instrumons[0].level.ToString();
-            instrumonHPText1.text = instrumons[0].CurrentHP.ToString() + '/' + instrumons[0].MaxHP.ToString();
+            instrumonHPText1.text = instrumons[0].Base.CurrentHP.ToString() + '/' + instrumons[0].Base.MaxHP.ToString();
         }
         else
         {
@@ -53,7 +53,7 @@ public class ButtonUpdater : MonoBehaviour
         {
             instrumonName2Text.text = instrumons[1].Base.instrumonName;
             instrumonLevelText2.text = "Lvl " + instrumons[1].level.ToString();
-            instrumonHPText2.text = instrumons[1].CurrentHP.ToString() + '/' + instrumons[1].MaxHP.ToString();
+            instrumonHPText2.text = instrumons[1].Base.CurrentHP.ToString() + '/' + instrumons[1].Base.MaxHP.ToString();
         }
         else
         {
@@ -66,7 +66,7 @@ public class ButtonUpdater : MonoBehaviour
         {
             instrumonName3Text.text = instrumons[2].Base.instrumonName;
             instrumonLevelText3.text = "Lvl " + instrumons[2].level.ToString();
-            instrumonHPText3.text = instrumons[2].CurrentHP.ToString() + '/' + instrumons[2].MaxHP.ToString();
+            instrumonHPText3.text = instrumons[2].Base.CurrentHP.ToString() + '/' + instrumons[2].Base.MaxHP.ToString();
         }
         else
         {
@@ -79,7 +79,7 @@ public class ButtonUpdater : MonoBehaviour
         {
             instrumonName4Text.text = instrumons[3].Base.instrumonName;
             instrumonLevelText4.text = "Lvl " + instrumons[3].level.ToString();
-            instrumonHPText4.text = instrumons[3].CurrentHP.ToString() + '/' + instrumons[3].MaxHP.ToString();
+            instrumonHPText4.text = instrumons[3].Base.CurrentHP.ToString() + '/' + instrumons[3].Base.MaxHP.ToString();
         }
         else
         {
