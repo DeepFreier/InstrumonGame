@@ -11,7 +11,7 @@ public class Instrumon
 
     [SerializeField] List<Moves> moves;
 
-     public int level;
+    public int level;
 
 
     //Takes note of the Instrumon's stats, current level, and current HP.

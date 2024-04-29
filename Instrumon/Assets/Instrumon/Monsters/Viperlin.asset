@@ -12,15 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d115aa147e1e63c49829a0bab20a559c, type: 3}
   m_Name: Viperlin
   m_EditorClassIdentifier: 
-  instrumonName: 
+  instrumonName: Viperlin
   description: 
   frontSprite: {fileID: 0}
   type: 0
   maxHP: 55
   attack: 40
   speed: 80
-  currentHP: 0
-  learnedMoves:
+  currentHP: 55
+  moves:
   - moveBase: {fileID: 11400000, guid: 6efc649096101fc48932269295eec3be, type: 2}
     level: 1
   - moveBase: {fileID: 11400000, guid: c6bce927d6fbdee48b6a8d5cb83c277d, type: 2}
