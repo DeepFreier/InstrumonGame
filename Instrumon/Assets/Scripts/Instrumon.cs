@@ -30,6 +30,9 @@ public class Instrumon
     public void Init()
     {
         CurrentHP = _base.MaxHP;
+        _base.MaxHP = MaxHP;
+        _base.Attack = Attack;
+        _base.Speed = Speed;
     }
 
     public void LevelSet(int lvl)
@@ -49,12 +52,12 @@ public class Instrumon
 
 //Formulas for increasing stats as an Instrumon levels up.
     public int MaxHP {
-        get { return Mathf.FloorToInt(_base.MaxHP+(((_base.MaxHP * level) / 100f) + (level * 10))); }
+        get { return Mathf.FloorToInt(_base.MaxHP+(((_base.basemaxHP * level) / 100f) + (level * 10))); }
     }
     public int Attack {
-        get { return Mathf.FloorToInt(_base.Attack+(((_base.Attack * level) / 100f) +(level * 5))); }
+        get { return Mathf.FloorToInt(_base.Attack+(((_base.baseattack * level) / 100f) +(level * 5))); }
     }
     public int Speed {
-        get { return Mathf.FloorToInt(_base.Speed+(((_base.Speed * level) / 100f) +(level * 5))); }
+        get { return Mathf.FloorToInt(_base.Speed+(((_base.basespeed * level) / 100f) +(level * 5))); }
     }
 }

@@ -76,6 +76,9 @@ public class SaveSystemMk2 : MonoBehaviour
         {
             Debug.Log("Position Tracker File Not Found. Loading new game.");
             SceneManager.LoadSceneAsync(1);
+            GameObject playerObject = GameObject.FindGameObjectWithTag("Player");
+            playerObject.GetComponent<PlayerController>().UpdateParty();
+            playerObject.GetComponent<PlayerController>().healparty();
             Debug.Log("Progress Flag:" + ProgressFlags.Flag);
         }
 

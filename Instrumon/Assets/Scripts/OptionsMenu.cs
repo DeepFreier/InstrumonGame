@@ -1,3 +1,4 @@
+using System.IO;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -46,6 +47,14 @@ public class OptionsMenu : MonoBehaviour
     // Apply settings to the DialogueManager
     private void ApplySettingsToDialogueManager()
     {
-        DialogueManager.Instance.SetLettersPerSecond(PlayerPrefs.GetInt("TextSpeed", 40));
+        if (DialogueManager.Instance != null)
+        {
+            DialogueManager.Instance.SetLettersPerSecond(PlayerPrefs.GetInt("TextSpeed", 40));
+        }
+        else
+        {
+            Debug.LogWarning("DialogueManager Instance is null. Settings cannot be applied.");
+        }
     }
+
 }

@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d115aa147e1e63c49829a0bab20a559c, type: 3}
+  m_Name: Trombeaver
+  m_EditorClassIdentifier: 
+  instrumonName: Trombeaver
+  description: 
+  frontSprite: {fileID: 21300000, guid: 37ceba67536a7f94b962804166d1fc9c, type: 3}
+  type: 1
+  maxHP: 70
+  attack: 50
+  speed: 30
+  currentHP: 70
+  moves:
+  - moveBase: {fileID: 11400000, guid: 4cba99ee7cbfd5440a682c1bb0d56989, type: 2}
+    level: 1
+  - moveBase: {fileID: 11400000, guid: a7ac218a49614de4abbb3dfd9de6b36a, type: 2}
+    level: 1
+  - moveBase: {fileID: 11400000, guid: 5240bf3b689a6c34b9afa86711391508, type: 2}
+    level: 1
+  - moveBase: {fileID: 11400000, guid: defd603b857da3d4987eb9fd11dcd75c, type: 2}
+    level: 1
