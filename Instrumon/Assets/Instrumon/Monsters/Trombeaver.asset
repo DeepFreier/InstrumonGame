@@ -12,15 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d115aa147e1e63c49829a0bab20a559c, type: 3}
   m_Name: Trombeaver
   m_EditorClassIdentifier: 
-  instrumonName: 
+  instrumonName: Trombeaver
   description: 
   frontSprite: {fileID: 0}
   type: 1
   maxHP: 70
   attack: 50
   speed: 30
-  currentHP: 0
-  learnedMoves:
+  currentHP: 70
+  moves:
   - moveBase: {fileID: 11400000, guid: 4cba99ee7cbfd5440a682c1bb0d56989, type: 2}
     level: 1
   - moveBase: {fileID: 11400000, guid: a7ac218a49614de4abbb3dfd9de6b36a, type: 2}

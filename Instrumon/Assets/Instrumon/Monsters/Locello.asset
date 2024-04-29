@@ -15,13 +15,13 @@ MonoBehaviour:
   instrumonName: Locello
   description: 'Despite being small in size, the music Locello can make using it''s
     bow-like arms sound more professional than any human orchestra. '
-  frontSprite: {fileID: 21300000, guid: bd8a8f20f63bc0e43b92b345d0e9dcbf, type: 3}
+  frontSprite: {fileID: 21300000, guid: d2a2e180e5a02b544a095e31a6d33b48, type: 3}
   type: 0
   maxHP: 40
   attack: 70
   speed: 55
   currentHP: 40
-  learnedMoves:
+  moves:
   - moveBase: {fileID: 11400000, guid: 35ab17b2f5cdb234c81fee633086b234, type: 2}
     level: 1
   - moveBase: {fileID: 11400000, guid: 67c137ad90e750f418ee6b493ee29664, type: 2}

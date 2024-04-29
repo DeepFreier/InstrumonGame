@@ -12,15 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d115aa147e1e63c49829a0bab20a559c, type: 3}
   m_Name: Xylynx
   m_EditorClassIdentifier: 
-  instrumonName: 
+  instrumonName: Xylynx
   description: 
   frontSprite: {fileID: 0}
   type: 2
   maxHP: 60
   attack: 70
   speed: 45
-  currentHP: 0
-  learnedMoves:
+  currentHP: 60
+  moves:
   - moveBase: {fileID: 11400000, guid: d16e25aeaf9a81a4fb38b10538769312, type: 2}
     level: 1
   - moveBase: {fileID: 11400000, guid: 419659b898edb354ba276db7ad46a59e, type: 2}
