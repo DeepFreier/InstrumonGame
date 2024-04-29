@@ -87,24 +87,21 @@ public class BattleController : MonoBehaviour
 
     void PlayerSongs()
     {
+
         if (playerCurrentMon.Base.instrumonName == "Corvinet")
         {
-
             audioManager.PlayInstrumonSongs(audioManager.clarinetSong, audioManager.drumLoop);
         }
         if (playerCurrentMon.Base.instrumonName == "Trumpig")
         {
-
             audioManager.PlayInstrumonSongs(audioManager.trumpetSong, audioManager.drumLoop);
         }
         if (playerCurrentMon.Base.instrumonName == "Elephone")
         {
-
             audioManager.PlayInstrumonSongs(audioManager.saxophoneSong, audioManager.drumLoop);
         }
         if (playerCurrentMon.Base.instrumonName == "Flumingo")
         {
-
             audioManager.PlayInstrumonSongs(audioManager.fluteSong, audioManager.drumLoop);
         }
         if (playerCurrentMon.Base.instrumonName == "Guitowl")
@@ -117,22 +114,18 @@ public class BattleController : MonoBehaviour
         }
         if (playerCurrentMon.Base.instrumonName == "Tarampini")
         {
-
             audioManager.PlayInstrumonSongs(audioManager.timpaniSong, audioManager.drumLoop);
         }
         if (playerCurrentMon.Base.instrumonName == "Tortuba")
         {
-
             audioManager.PlayInstrumonSongs(audioManager.tubaSong, audioManager.drumLoop);
         }
         if (playerCurrentMon.Base.instrumonName == "Trombeaver")
         {
-
             audioManager.PlayInstrumonSongs(audioManager.tromboneSong, audioManager.drumLoop);
         }
         if (playerCurrentMon.Base.instrumonName == "Viperlin")
         {
-
             audioManager.PlayInstrumonSongs(audioManager.violinSong, audioManager.drumLoop);
         }
         if (playerCurrentMon.Base.instrumonName == "Xylynx")
@@ -173,27 +166,22 @@ public class BattleController : MonoBehaviour
         }
         if (oppCurrentMon.Base.instrumonName == "Tarampini")
         {
-
             audioManager.OppInstrumonSongs(audioManager.timpaniSong);
         }
         if (oppCurrentMon.Base.instrumonName == "Tortuba")
         {
-
             audioManager.OppInstrumonSongs(audioManager.tubaSong);
         }
         if (oppCurrentMon.Base.instrumonName == "Trombeaver")
         {
-
             audioManager.OppInstrumonSongs(audioManager.tromboneSong);
         }
         if (oppCurrentMon.Base.instrumonName == "Viperlin")
         {
-
             audioManager.OppInstrumonSongs(audioManager.violinSong);
         }
         if (oppCurrentMon.Base.instrumonName == "Xylynx")
         {
-
             audioManager.OppInstrumonSongs(audioManager.xylophoneSong);
         }
     }
@@ -227,6 +215,7 @@ public class BattleController : MonoBehaviour
         playerCurrentHealthText.text = playerCurrentMon.Base.CurrentHP.ToString();
         playerTotalHealthText.text = playerCurrentMon.Base.MaxHP.ToString();
         monList.SetActive(false);
+        PlayerSongs();
 
         oppTurn();
     }
@@ -319,6 +308,7 @@ public class BattleController : MonoBehaviour
             dealDamage(0);
             oppCurrentHealthText.text = oppCurrentMon.Base.CurrentHP.ToString();
             oppTotalHealthText.text = oppCurrentMon.Base.Name.ToString();
+            OppSongs();
         }
     }
 
