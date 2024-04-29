@@ -25,9 +25,9 @@ public class BattleController : MonoBehaviour
     public TextMeshProUGUI oppTotalHealthText;
 
     //player variables
-
     public static List<Instrumon> playerParty = ProgressFlags.ReturnPlyrPrty();
     public static Instrumon playerCurrentMon = playerParty[0];
+    public bool playerDeathSwitchFlag = false;
     
     //cpu variables
     public static List<Instrumon> oppParty = ProgressFlags.ReturnOppPrty();
@@ -50,8 +50,9 @@ public class BattleController : MonoBehaviour
 
         PlayerSongs();
         OppSongs();
-        oppCurrentIndex = 0;
 
+        oppCurrentIndex = 0;
+        playerDeathSwitchFlag = false;
 
         if (playerCurrentMon.Base.CurrentHP <= 0)
         {
@@ -233,15 +234,19 @@ public class BattleController : MonoBehaviour
         takeDamage(0);
         monList.SetActive(false);
         PlayerSongs();
-
-        descriptionText.text = oppCurrentMon.Base.instrumonName + " found an openning!";
-        oppTurn();
+        if (!playerDeathSwitchFlag)
+        {
+            descriptionText.text = oppCurrentMon.Base.instrumonName + " found an openning!";
+            oppTurn();
+        }
+        playerDeathSwitchFlag = false;
     }
     
     //is called when player's mon dies
     public void playerDeathSwitch()
     {
         descriptionText.text = playerCurrentMon.Base.instrumonName.ToString() + " has fainted, please choose another Instrumon to battle.";
+        playerDeathSwitchFlag = true;
         monList.SetActive(true);
         monBackBtn.SetActive(false);
     }
