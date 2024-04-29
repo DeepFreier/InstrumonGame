@@ -47,9 +47,10 @@ public class BattleController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
-        PlayerSongs();
-        OppSongs();
+        audioManager.StartInstrumonSongs();
+        audioManager.MutePlayerSongs();
+        audioManager.MuteOppSongs();
+      
 
         oppCurrentIndex = 0;
         playerDeathSwitchFlag = false;
@@ -98,107 +99,6 @@ public class BattleController : MonoBehaviour
         audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<BattleAudioManager>();
     }
 
-    void PlayerSongs()
-    {
-
-        if (playerCurrentMon.Base.instrumonName == "Corvinet")
-        {
-            audioManager.PlayInstrumonSongs(audioManager.clarinetSong, audioManager.drumLoop);
-        }
-        if (playerCurrentMon.Base.instrumonName == "Trumpig")
-        {
-            audioManager.PlayInstrumonSongs(audioManager.trumpetSong, audioManager.drumLoop);
-        }
-        if (playerCurrentMon.Base.instrumonName == "Elephone")
-        {
-            audioManager.PlayInstrumonSongs(audioManager.saxophoneSong, audioManager.drumLoop);
-        }
-        if (playerCurrentMon.Base.instrumonName == "Flumingo")
-        {
-            audioManager.PlayInstrumonSongs(audioManager.fluteSong, audioManager.drumLoop);
-        }
-        if (playerCurrentMon.Base.instrumonName == "Guitowl")
-        {
-            audioManager.PlayInstrumonSongs(audioManager.guitarSong, audioManager.drumLoop);
-        }
-        if (playerCurrentMon.Base.instrumonName == "Locello")
-        {
-            audioManager.PlayInstrumonSongs(audioManager.celloSong, audioManager.drumLoop);
-        }
-        if (playerCurrentMon.Base.instrumonName == "Tarampani")
-        {
-            audioManager.PlayInstrumonSongs(audioManager.timpaniSong, audioManager.drumLoop);
-        }
-        if (playerCurrentMon.Base.instrumonName == "Tortuba")
-        {
-            audioManager.PlayInstrumonSongs(audioManager.tubaSong, audioManager.drumLoop);
-        }
-        if (playerCurrentMon.Base.instrumonName == "Trombeaver")
-        {
-            audioManager.PlayInstrumonSongs(audioManager.tromboneSong, audioManager.drumLoop);
-        }
-        if (playerCurrentMon.Base.instrumonName == "Viperlin")
-        {
-            audioManager.PlayInstrumonSongs(audioManager.violinSong, audioManager.drumLoop);
-        }
-        if (playerCurrentMon.Base.instrumonName == "Xylynx")
-        {
-            audioManager.PlayInstrumonSongs(audioManager.xylophoneSong, audioManager.drumLoop);
-        }
-    }
-
-    void OppSongs()
-    {
-        if (oppCurrentMon.Base.instrumonName == "Corvinet")
-        {
-
-            audioManager.OppInstrumonSongs(audioManager.clarinetSong);
-        }
-        if (oppCurrentMon.Base.instrumonName == "Trumpig")
-        {
-
-            audioManager.OppInstrumonSongs(audioManager.trumpetSong);
-        }
-        if (oppCurrentMon.Base.instrumonName == "Elephone")
-        {
-
-            audioManager.OppInstrumonSongs(audioManager.saxophoneSong);
-        }
-        if (oppCurrentMon.Base.instrumonName == "Flumingo")
-        {
-
-            audioManager.OppInstrumonSongs(audioManager.fluteSong);
-        }
-        if (oppCurrentMon.Base.instrumonName == "Guitowl")
-        {
-            audioManager.OppInstrumonSongs(audioManager.guitarSong);
-        }
-        if (oppCurrentMon.Base.instrumonName == "Locello")
-        {
-            audioManager.OppInstrumonSongs(audioManager.celloSong);
-        }
-        if (oppCurrentMon.Base.instrumonName == "Tarampani")
-        {
-            audioManager.OppInstrumonSongs(audioManager.timpaniSong);
-        }
-        if (oppCurrentMon.Base.instrumonName == "Tortuba")
-        {
-            audioManager.OppInstrumonSongs(audioManager.tubaSong);
-        }
-        if (oppCurrentMon.Base.instrumonName == "Trombeaver")
-        {
-            audioManager.OppInstrumonSongs(audioManager.tromboneSong);
-        }
-        if (oppCurrentMon.Base.instrumonName == "Viperlin")
-        {
-            audioManager.OppInstrumonSongs(audioManager.violinSong);
-        }
-        if (oppCurrentMon.Base.instrumonName == "Xylynx")
-        {
-            audioManager.OppInstrumonSongs(audioManager.xylophoneSong);
-        }
-    }
-
     // Update is called once per frame
     void Update()
     {
@@ -233,7 +133,7 @@ public class BattleController : MonoBehaviour
         playerTotalHealthText.text = playerCurrentMon.Base.MaxHP.ToString();
         takeDamage(0);
         monList.SetActive(false);
-        PlayerSongs();
+        audioManager.MutePlayerSongs();
         if (!playerDeathSwitchFlag)
         {
             descriptionText.text = oppCurrentMon.Base.instrumonName + " found an openning!";
@@ -334,8 +234,8 @@ public class BattleController : MonoBehaviour
             dealDamage(0);
             oppCurrentHealthText.text = oppCurrentMon.Base.CurrentHP.ToString();
             oppTotalHealthText.text = oppCurrentMon.Base.MaxHP.ToString();
-            OppSongs();
         }
+        audioManager.MuteOppSongs();
     }
 
     //returns a bool for if the player or opponent goes first

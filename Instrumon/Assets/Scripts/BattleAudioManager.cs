@@ -3,10 +3,40 @@ using UnityEngine;
 
 public class BattleAudioManager : MonoBehaviour {
 
-    [Header("--------Audio Source---------")]
-    [SerializeField] AudioSource battleMusic;
-    [SerializeField] AudioSource instrumonSongs;
-    [SerializeField] AudioSource oppInstrumonSongs;
+    [Header("-------Drum Track---------")]
+    public AudioSource battleMusic;
+
+    [Header("-----Back Up Tracks---------")]
+    public AudioSource instrumonSongs;
+    public AudioSource oppInstrumonSongs;
+
+    [Header("--------Player Audio Source---------")]
+    public AudioSource clarinetInstrumon;
+    public AudioSource fluteInstrumon;
+    public AudioSource saxophoneInstrumon;
+    public AudioSource violinInstrumon;
+    public AudioSource celloInstrumon;
+    public AudioSource guitarInstrumon;
+    public AudioSource pianoInstrumon;
+    public AudioSource timpaniInstrumon;
+    public AudioSource xylophoneInstrumon;
+    public AudioSource tubaInstrumon;
+    public AudioSource tromboneInstrumon;
+    public AudioSource trumpetInstrumon;
+
+    [Header("-------Opponent Audio Source--------")]
+    public AudioSource oppClarinetInstrumon;
+    public AudioSource oppFluteInstrumon;
+    public AudioSource oppSaxophoneInstrumon;
+    public AudioSource oppViolinInstrumon;
+    public AudioSource oppCelloInstrumon;
+    public AudioSource oppGuitarInstrumon;
+    public AudioSource oppPianoInstrumon;
+    public AudioSource oppTimpaniInstrumon;
+    public AudioSource oppXylophoneInstrumon;
+    public AudioSource oppTubaInstrumon;
+    public AudioSource oppTromboneInstrumon;
+    public AudioSource oppTrumpetInstrumon;
 
 
     [Header("--------Audio Clip------------")]
@@ -36,6 +66,11 @@ public class BattleAudioManager : MonoBehaviour {
     public AudioClip xylophoneIntro;
     public AudioClip xylophoneSong;
 
+
+    private void Start()
+    {
+        battleMusic = GetComponent<AudioSource>();
+    }
     public void PlayInstrumonSongs(AudioClip clip1, AudioClip clip2)
     {
 
@@ -55,84 +90,154 @@ public class BattleAudioManager : MonoBehaviour {
 
     public void StartInstrumonSongs()
     {
-        AudioClip.FindObjectOfType<AudioSource>(clarinetSong).PlayScheduled(AudioSettings.dspTime + .05f);
-        AudioClip.FindObjectOfType<AudioSource>(fluteSong).PlayScheduled(AudioSettings.dspTime + .05f);
-        AudioClip.FindObjectOfType<AudioSource>(guitarSong).PlayScheduled(AudioSettings.dspTime + .05f);
-        AudioClip.FindObjectOfType<AudioSource>(violinSong).PlayScheduled(AudioSettings.dspTime + .05f);
-        AudioClip.FindObjectOfType<AudioSource>(tubaSong).PlayScheduled(AudioSettings.dspTime + .05f);
-        AudioClip.FindObjectOfType<AudioSource>(trumpetSong).PlayScheduled(AudioSettings.dspTime + .05f);
-        AudioClip.FindObjectOfType<AudioSource>(tromboneSong).PlayScheduled(AudioSettings.dspTime + .05f);
-        AudioClip.FindObjectOfType<AudioSource>(pianoSong).PlayScheduled(AudioSettings.dspTime + .05f);
-        AudioClip.FindObjectOfType<AudioSource>(saxophoneSong).PlayScheduled(AudioSettings.dspTime + .05f);
-        AudioClip.FindObjectOfType<AudioSource>(xylophoneSong).PlayScheduled(AudioSettings.dspTime + .05f);
-        AudioClip.FindObjectOfType<AudioSource>(timpaniSong).PlayScheduled(AudioSettings.dspTime + .05f);
-        AudioClip.FindObjectOfType<AudioSource>(drumLoop).PlayScheduled(AudioSettings.dspTime + .05f);
+        //starting player songs
+        battleMusic.PlayScheduled(AudioSettings.dspTime + .05f);
+        clarinetInstrumon.PlayScheduled(AudioSettings.dspTime + .05f);
+        fluteInstrumon.PlayScheduled(AudioSettings.dspTime + .05f);
+        saxophoneInstrumon.PlayScheduled(AudioSettings.dspTime + .05f);
+        timpaniInstrumon.PlayScheduled(AudioSettings.dspTime + .05f);
+        pianoInstrumon.PlayScheduled(AudioSettings.dspTime + .05f);
+        xylophoneInstrumon.PlayScheduled(AudioSettings.dspTime + .05f);
+        tubaInstrumon.PlayScheduled(AudioSettings.dspTime + .05f);
+        trumpetInstrumon.PlayScheduled(AudioSettings.dspTime + .05f);
+        tromboneInstrumon.PlayScheduled(AudioSettings.dspTime + .05f);
+        violinInstrumon.PlayScheduled(AudioSettings.dspTime + .05f);
+        celloInstrumon.PlayScheduled(AudioSettings.dspTime + .05f);
+        guitarInstrumon.PlayScheduled(AudioSettings.dspTime + .05f);
 
-        //looping the audio clips
-        AudioClip.FindObjectOfType<AudioSource>(clarinetSong).loop = true;
-        AudioClip.FindObjectOfType<AudioSource>(trumpetSong).loop = true;
-        AudioClip.FindObjectOfType<AudioSource>(saxophoneSong).loop = true;
-        AudioClip.FindObjectOfType<AudioSource>(fluteSong).loop = true;
-        AudioClip.FindObjectOfType<AudioSource>(guitarSong).loop = true;
-        AudioClip.FindObjectOfType<AudioSource>(celloSong).loop = true;
-        AudioClip.FindObjectOfType<AudioSource>(timpaniSong).loop = true;
-        AudioClip.FindObjectOfType<AudioSource>(tubaSong).loop = true;
-        AudioClip.FindObjectOfType<AudioSource>(tromboneSong).loop = true;
-        AudioClip.FindObjectOfType<AudioSource>(violinSong).loop = true;
-        AudioClip.FindObjectOfType<AudioSource>(xylophoneSong).loop = true;
-        AudioClip.FindObjectOfType<AudioSource>(drumLoop).loop = true;
+        //Starting opponents song
+        oppClarinetInstrumon.PlayScheduled(AudioSettings.dspTime + .05f);
+        oppCelloInstrumon.PlayScheduled(AudioSettings.dspTime + .05f);
+        oppSaxophoneInstrumon.PlayScheduled(AudioSettings.dspTime + .05f);
+        oppTimpaniInstrumon.PlayScheduled(AudioSettings.dspTime + .05f);
+        oppPianoInstrumon.PlayScheduled(AudioSettings.dspTime + .05f);
+        oppXylophoneInstrumon.PlayScheduled(AudioSettings.dspTime + .05f);
+        oppTubaInstrumon.PlayScheduled(AudioSettings.dspTime + .05f);
+        oppTrumpetInstrumon.PlayScheduled(AudioSettings.dspTime + .05f);
+        oppTromboneInstrumon.PlayScheduled(AudioSettings.dspTime + .05f);
+        oppViolinInstrumon.PlayScheduled(AudioSettings.dspTime + .05f);
+        oppCelloInstrumon.PlayScheduled(AudioSettings.dspTime + .05f);
+        oppGuitarInstrumon.PlayScheduled(AudioSettings.dspTime + .05f);
 
     }
 
-    public void MuteSongs()
+    public void MutePlayerSongs()
     {
-        //Muting audio clips
-        AudioClip.FindObjectOfType<AudioSource>(clarinetSong).mute = true;
-        AudioClip.FindObjectOfType<AudioSource>(trumpetSong).mute = true;
-        AudioClip.FindObjectOfType<AudioSource>(saxophoneSong).mute = true;
-        AudioClip.FindObjectOfType<AudioSource>(fluteSong).mute = true;
-        AudioClip.FindObjectOfType<AudioSource>(guitarSong).mute = true;
-        AudioClip.FindObjectOfType<AudioSource>(celloSong).mute = true;
-        AudioClip.FindObjectOfType<AudioSource>(timpaniSong).mute = true;
-        AudioClip.FindObjectOfType<AudioSource>(tubaSong).mute = true;
-        AudioClip.FindObjectOfType<AudioSource>(tromboneSong).mute = true;
-        AudioClip.FindObjectOfType<AudioSource>(violinSong).mute = true;
-        AudioClip.FindObjectOfType<AudioSource>(xylophoneSong).mute = true;
+        //Muting Player audio clips
+        clarinetInstrumon.mute = true;
+        fluteInstrumon.mute = true;
+        saxophoneInstrumon.mute = true;
+        trumpetInstrumon.mute = true;
+        tromboneInstrumon.mute = true;
+        tubaInstrumon.mute = true;
+        violinInstrumon.mute = true;
+        celloInstrumon.mute = true;
+        guitarInstrumon.mute = true;
+        pianoInstrumon.mute = true;
+        timpaniInstrumon.mute = true;
+        xylophoneInstrumon.mute = true;
+
+        
 
 
-        if(BattleController.playerCurrentMon.Base.instrumonName == "Corvinet") {
-            AudioClip.FindObjectOfType<AudioSource>(clarinetSong).mute = false;
+        if (BattleController.playerCurrentMon.Base.instrumonName == "Corvinet") {
+            clarinetInstrumon.mute = false;
         }
         if(BattleController.playerCurrentMon.Base.instrumonName == "Guitowl") {
-            AudioClip.FindObjectOfType<AudioSource>(guitarSong).mute = false;
+            guitarInstrumon.mute = false;
         }
         if (BattleController.playerCurrentMon.Base.instrumonName == "Trumpig") {
-            AudioClip.FindObjectOfType<AudioSource>(trumpetSong).mute = false;
+            trumpetInstrumon.mute = false;
         }
         if (BattleController.playerCurrentMon.Base.instrumonName == "Elephone") {
-            AudioClip.FindObjectOfType<AudioSource>(saxophoneSong).mute = false;
+            saxophoneInstrumon.mute = false;
         }
         if (BattleController.playerCurrentMon.Base.instrumonName == "Flumingo") {
-            AudioClip.FindObjectOfType<AudioSource>(fluteSong).mute = false;
+            fluteInstrumon.mute = false;
         }
         if (BattleController.playerCurrentMon.Base.instrumonName == "Locello") {
-            AudioClip.FindObjectOfType<AudioSource>(celloSong).mute = false;
+            celloInstrumon.mute = false;
         }
         if (BattleController.playerCurrentMon.Base.instrumonName == "Tarampini") {
-            AudioClip.FindObjectOfType<AudioSource>(timpaniSong).mute = false;
+            timpaniInstrumon.mute = false;
         }
         if (BattleController.playerCurrentMon.Base.instrumonName == "Tortuba") {
-            AudioClip.FindObjectOfType<AudioSource>(tubaSong).mute = false;
+            tubaInstrumon.mute = false;
         }
         if (BattleController.playerCurrentMon.Base.instrumonName == "Trombeaver") {
-            AudioClip.FindObjectOfType<AudioSource>(tromboneSong).mute = false;
+            tromboneInstrumon.mute = false;
         }
         if (BattleController.playerCurrentMon.Base.instrumonName == "Viperlin") {
-            AudioClip.FindObjectOfType<AudioSource>(violinSong).mute = false;
+            violinInstrumon.mute = false;
         }
         if (BattleController.playerCurrentMon.Base.instrumonName == "Xylynx") {
-            AudioClip.FindObjectOfType<AudioSource>(xylophoneSong).mute = false;
+            xylophoneInstrumon.mute = false;
         }
+    }
 
+
+    public void MuteOppSongs()
+    {
+        //Muting opponent audio clips
+        oppClarinetInstrumon.mute = true;
+        oppFluteInstrumon.mute = true;
+        oppSaxophoneInstrumon.mute = true;
+        oppTrumpetInstrumon.mute = true;
+        oppTromboneInstrumon.mute = true;
+        oppTubaInstrumon.mute = true;
+        oppViolinInstrumon.mute = true;
+        oppCelloInstrumon.mute = true;
+        oppGuitarInstrumon.mute = true;
+        oppPianoInstrumon.mute = true;
+        oppTimpaniInstrumon.mute = true;
+        oppXylophoneInstrumon.mute = true;
+
+
+
+
+        if (BattleController.oppCurrentMon.Base.instrumonName == "Corvinet")
+        {
+            oppClarinetInstrumon.mute = false;
+        }
+        if (BattleController.oppCurrentMon.Base.instrumonName == "Guitowl")
+        {
+            oppGuitarInstrumon.mute = false;
+        }
+        if (BattleController.oppCurrentMon.Base.instrumonName == "Trumpig")
+        {
+            oppTrumpetInstrumon.mute = false;
+        }
+        if (BattleController.oppCurrentMon.Base.instrumonName == "Elephone")
+        {
+            oppSaxophoneInstrumon.mute = false;
+        }
+        if (BattleController.oppCurrentMon.Base.instrumonName == "Flumingo")
+        {
+            oppFluteInstrumon.mute = false;
+        }
+        if (BattleController.oppCurrentMon.Base.instrumonName == "Locello")
+        {
+            oppCelloInstrumon.mute = false;
+        }
+        if (BattleController.oppCurrentMon.Base.instrumonName == "Tarampini")
+        {
+            oppTimpaniInstrumon.mute = false;
+        }
+        if (BattleController.oppCurrentMon.Base.instrumonName == "Tortuba")
+        {
+            oppTubaInstrumon.mute = false;
+        }
+        if (BattleController.oppCurrentMon.Base.instrumonName == "Trombeaver")
+        {
+            oppTromboneInstrumon.mute = false;
+        }
+        if (BattleController.oppCurrentMon.Base.instrumonName == "Viperlin")
+        {
+            oppViolinInstrumon.mute = false;
+        }
+        if (BattleController.oppCurrentMon.Base.instrumonName == "Xylynx")
+        {
+            oppXylophoneInstrumon.mute = false;
+        }
     }
 }
