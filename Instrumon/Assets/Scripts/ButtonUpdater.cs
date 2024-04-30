@@ -31,7 +31,7 @@ public class ButtonUpdater : MonoBehaviour
     public Button instrumonButton3;
     public Button instrumonButton4;
 
-    private void Start()
+    private void Update()
     {
         UpdateInstrumonNames();
     }
@@ -46,12 +46,18 @@ public class ButtonUpdater : MonoBehaviour
             instrumonLevelText1.text = "Lvl " + instrumons[0].level.ToString();
             instrumonHPText1.text = instrumons[0].Base.CurrentHP.ToString() + '/' + instrumons[0].Base.MaxHP.ToString();
             instrumonHealthBar1.fillAmount = (float)instrumons[0].Base.CurrentHP / instrumons[0].Base.MaxHP;
-            /*if (instrumons[0].Base.CurrentHP == 0)
+            if (instrumons[0].Base.CurrentHP == 0)
             {
                 ColorBlock colors = instrumonButton1.colors;
                 colors.normalColor = new Color(170f / 255f, 0f, 0f);
                 instrumonButton1.colors = colors;
-            }*/
+            }
+            else
+            {
+                ColorBlock colors = instrumonButton1.colors;
+                colors.normalColor = new Color(255f, 255f, 255f);
+                instrumonButton1.colors = colors;
+            }
         }
         else
         {
@@ -66,6 +72,18 @@ public class ButtonUpdater : MonoBehaviour
             instrumonLevelText2.text = "Lvl " + instrumons[1].level.ToString();
             instrumonHPText2.text = instrumons[1].Base.CurrentHP.ToString() + '/' + instrumons[1].Base.MaxHP.ToString();
             instrumonHealthBar2.fillAmount = (float)instrumons[1].Base.CurrentHP / instrumons[1].Base.MaxHP;
+            if (instrumons[1].Base.CurrentHP == 0)
+            {
+                ColorBlock colors = instrumonButton2.colors;
+                colors.normalColor = new Color(170f / 255f, 0f, 0f);
+                instrumonButton2.colors = colors;
+            }
+            else
+            {
+                ColorBlock colors = instrumonButton2.colors;
+                colors.normalColor = new Color(255f, 255f, 255f);
+                instrumonButton2.colors = colors;
+            }
         }
         else
         {
@@ -80,6 +98,18 @@ public class ButtonUpdater : MonoBehaviour
             instrumonLevelText3.text = "Lvl " + instrumons[2].level.ToString();
             instrumonHPText3.text = instrumons[2].Base.CurrentHP.ToString() + '/' + instrumons[2].Base.MaxHP.ToString();
             instrumonHealthBar3.fillAmount = (float)instrumons[2].Base.CurrentHP / instrumons[2].Base.MaxHP;
+            if (instrumons[2].Base.CurrentHP == 0)
+            {
+                ColorBlock colors = instrumonButton3.colors;
+                colors.normalColor = new Color(170f / 255f, 0f, 0f);
+                instrumonButton3.colors = colors;
+            }
+            else
+            {
+                ColorBlock colors = instrumonButton3.colors;
+                colors.normalColor = new Color(255f, 255f, 255f);
+                instrumonButton3.colors = colors;
+            }
         }
         else
         {
@@ -94,6 +124,18 @@ public class ButtonUpdater : MonoBehaviour
             instrumonLevelText4.text = "Lvl " + instrumons[3].level.ToString();
             instrumonHPText4.text = instrumons[3].Base.CurrentHP.ToString() + '/' + instrumons[3].Base.MaxHP.ToString();
             instrumonHealthBar4.fillAmount = (float)instrumons[3].Base.CurrentHP / instrumons[3].Base.MaxHP;
+            if (instrumons[3].Base.CurrentHP == 0)
+            {
+                ColorBlock colors = instrumonButton4.colors;
+                colors.normalColor = new Color(170f / 255f, 0f, 0f);
+                instrumonButton4.colors = colors;
+            }
+            else
+            {
+                ColorBlock colors = instrumonButton4.colors;
+                colors.normalColor = new Color(255f, 255f, 255f);
+                instrumonButton4.colors = colors;
+            }
         }
         else
         {
