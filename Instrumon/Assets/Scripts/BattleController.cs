@@ -236,7 +236,22 @@ public class BattleController : MonoBehaviour
             {
                 oppSwitch();
             }
-
+            if (playerCurrentMon.Base.CurrentHP <= 0)
+            {
+                int total = 0;
+                foreach (Instrumon mon in playerParty)
+                {
+                    total += mon.Base.CurrentHP;
+                }
+                if (total > 0)
+                {
+                    playerDeathSwitch();
+                }
+                else
+                {
+                    StartCoroutine(loseBattle());
+                }
+            }
         }
         else
         {
@@ -465,7 +480,7 @@ public class BattleController : MonoBehaviour
 
     public void OnMonButton()
     {
-
+        monBackBtn.SetActive(true);
     }
 
     public void OnStatButton()
