@@ -130,6 +130,12 @@ public class BattleController : MonoBehaviour
     private void Awake()
     {
         audioManager = GameObject.FindGameObjectWithTag("Audio").GetComponent<BattleAudioManager>();
+
+        playerParty = ProgressFlags.ReturnPlyrPrty();
+        playerCurrentMon = playerParty[0];
+
+        oppParty = ProgressFlags.ReturnOppPrty();
+        oppCurrentMon = oppParty[0];
     }
 
     // Update is called once per frame
