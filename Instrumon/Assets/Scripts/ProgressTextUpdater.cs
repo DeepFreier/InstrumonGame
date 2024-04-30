@@ -4,7 +4,6 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 using static System.Net.Mime.MediaTypeNames;
-using static UnityEngine.InputManagerEntry;
 
 public class ProgressTextUpdater : MonoBehaviour
 {
