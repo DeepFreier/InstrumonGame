@@ -40,6 +40,7 @@ public class MusicianNPC_Controller : MonoBehaviour , Interactable
             DialogueManager.Instance.OnHideDialogue += () =>
             {
                 saveSystem.Save();
+                ProgressFlags.updateOppParty();
                 SceneManager.LoadScene(2);
             };
             
