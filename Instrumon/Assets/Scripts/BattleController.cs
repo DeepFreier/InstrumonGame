@@ -74,6 +74,8 @@ public class BattleController : MonoBehaviour
     //Audio Manager
     BattleAudioManager audioManager;
 
+    public SaveSystemMk2 saveSystem;
+
 
     // Start is called before the first frame update
     void Start()
@@ -173,8 +175,7 @@ public class BattleController : MonoBehaviour
     {
         descriptionText.text = "You win!";
         yield return new WaitForSeconds(3);
-        SceneManager.LoadScene(1);
-        ProgressFlags.UpdateFlag(ProgressFlags.Flag + 1);
+        saveSystem.LoadWithFlag(ProgressFlags.Flag + 1);
     }
 
     //is called when all of the player's mons die
@@ -182,7 +183,9 @@ public class BattleController : MonoBehaviour
     {
         descriptionText.text = "You lost...";
         yield return new WaitForSeconds(3);
-        SceneManager.LoadScene(1);
+        saveSystem.LoadWithPosition(96, -100.42);
+        GameObject player = GameObject.Find("Player");
+        player.GetComponent<PlayerController>().healparty();
     }
 
     //is called when player voluntarily switches mons
