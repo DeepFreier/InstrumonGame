@@ -164,7 +164,7 @@ public class BattleAudioManager : MonoBehaviour {
         if (BattleController.playerCurrentMon.Base.instrumonName == "Locello") {
             celloInstrumon.mute = false;
         }
-        if (BattleController.playerCurrentMon.Base.instrumonName == "Tarampini") {
+        if (BattleController.playerCurrentMon.Base.instrumonName == "Tarampani") {
             timpaniInstrumon.mute = false;
         }
         if (BattleController.playerCurrentMon.Base.instrumonName == "Tortuba") {
@@ -229,7 +229,7 @@ public class BattleAudioManager : MonoBehaviour {
         {
             oppCelloInstrumon.mute = false;
         }
-        if (BattleController.oppCurrentMon.Base.instrumonName == "Tarampini")
+        if (BattleController.oppCurrentMon.Base.instrumonName == "Tarampani")
         {
             oppTimpaniInstrumon.mute = false;
         }
