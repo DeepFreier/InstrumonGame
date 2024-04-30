@@ -18,10 +18,13 @@ MonoBehaviour:
     to launch the mud outwards.
   frontSprite: {fileID: 21300000, guid: bd8a8f20f63bc0e43b92b345d0e9dcbf, type: 3}
   type: 1
-  maxHP: 60
-  attack: 65
-  speed: 35
-  currentHP: 60
+  basemaxHP: 60
+  baseattack: 65
+  basespeed: 35
+  maxHP: 74
+  attack: 74
+  speed: 44
+  currentHP: 74
   moves:
   - moveBase: {fileID: 11400000, guid: ae1d8406b26d2834ab6b3fc983d5be8e, type: 2}
     level: 1

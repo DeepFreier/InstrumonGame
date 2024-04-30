@@ -18,6 +18,9 @@ MonoBehaviour:
     legs to attack.
   frontSprite: {fileID: 21300000, guid: 0b8d14761583ee743a248ed700b02e09, type: 3}
   type: 2
+  basemaxHP: 45
+  baseattack: 50
+  basespeed: 60
   maxHP: 45
   attack: 50
   speed: 60
