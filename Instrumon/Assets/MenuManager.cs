@@ -27,6 +27,11 @@ public class MenuManager : MonoBehaviour
     // Reference to GameController to access the GameState
     public GameController gameController;
 
+    private void Awake()
+    {
+        TogglePauseMenu(false);
+    }
+
     /// <summary>
     /// Update is called once per frame.
     /// </summary>
@@ -54,6 +59,7 @@ public class MenuManager : MonoBehaviour
         {
             playerController.AllowInput();
         }
+        
     }
 
     // Method to toggle the pause menu

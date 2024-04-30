@@ -48,18 +48,18 @@ public class SaveSystemMk2 : MonoBehaviour
         SD.PlayerPosy = playerpos.position.y;
         //Opens a new XML File and saves to it, or overwrites a file with the same name
         XmlSerializer serializer = new(typeof(SaveDatabase));
-        FileStream stream = new(Application.dataPath + "/SaveFile/SaveData.xml", FileMode.Create);
+        FileStream stream = new(Path.Combine(Application.persistentDataPath, "SaveData.xml"), FileMode.Create);
         serializer.Serialize(stream, SD);
         stream.Close();
     }
 
     public void Load()
     {
-        if (File.Exists(Path.Combine(Application.dataPath + "/SaveFile/SaveData.xml")))
+        if (File.Exists(Path.Combine(Application.persistentDataPath, "SaveData.xml")))
         {
             Vector2 PlayerPosn;
             XmlSerializer serializer = new(typeof(SaveDatabase));
-            FileStream stream = new(Application.dataPath + "/SaveFile/SaveData.xml", FileMode.Open);
+            FileStream stream = new(Path.Combine(Application.persistentDataPath, "SaveData.xml"), FileMode.Open);
             SaveDatabase OSD = serializer.Deserialize(stream) as SaveDatabase;
             PlayerPosn.x = OSD.PlayerPosx;
             PlayerPosn.y = OSD.PlayerPosy;
@@ -92,11 +92,11 @@ public class SaveSystemMk2 : MonoBehaviour
     }
     public void LoadWithFlag(int flag)
     {
-        if (File.Exists(Path.Combine(Application.dataPath + "/SaveFile/SaveData.xml")))
+        if (File.Exists(Path.Combine(Application.persistentDataPath, "SaveData.xml")))
         {
             Vector2 PlayerPosn;
             XmlSerializer serializer = new(typeof(SaveDatabase));
-            FileStream stream = new(Application.dataPath + "/SaveFile/SaveData.xml", FileMode.Open);
+            FileStream stream = new(Path.Combine(Application.persistentDataPath, "SaveData.xml"), FileMode.Open);
             SaveDatabase OSD = serializer.Deserialize(stream) as SaveDatabase;
             PlayerPosn.x = OSD.PlayerPosx;
             PlayerPosn.y = OSD.PlayerPosy;
@@ -119,11 +119,11 @@ public class SaveSystemMk2 : MonoBehaviour
     }
     public void LoadWithPosition(double x, double y)
     {
-        if (File.Exists(Path.Combine(Application.dataPath + "/SaveFile/SaveData.xml")))
+        if (File.Exists(Path.Combine(Application.persistentDataPath, "SaveData.xml")))
         {
             Vector2 PlayerPosn;
             XmlSerializer serializer = new(typeof(SaveDatabase));
-            FileStream stream = new(Application.dataPath + "/SaveFile/SaveData.xml", FileMode.Open);
+            FileStream stream = new(Path.Combine(Application.persistentDataPath, "SaveData.xml"), FileMode.Open);
             SaveDatabase OSD = serializer.Deserialize(stream) as SaveDatabase;
             PlayerPosn.x = ((float)x);
             PlayerPosn.y = ((float)y);
@@ -150,7 +150,7 @@ public class SaveSystemMk2 : MonoBehaviour
     // Delete the save file
     public void DeleteSaveFile()
     {
-        string filePath = Application.dataPath + "/SaveFile/SaveData.xml";
+        string filePath = Path.Combine(Application.persistentDataPath, "SaveData.xml");
         if (File.Exists(filePath))
         {
             File.Delete(filePath);
@@ -166,7 +166,7 @@ public class SaveSystemMk2 : MonoBehaviour
     public void LoadPosition(Vector2 PlayerPos, int ProFlag, List<int> PlayerMonHealth)
     {
         // Check if the position tracker file exists
-        if (!File.Exists(Path.Combine(Application.dataPath + "/SaveFile/SaveData.xml")))
+        if (!File.Exists(Path.Combine(Application.persistentDataPath, "SaveData.xml")))
         {
             Debug.Log("Position Tracker File Not Found. Loading new game.");
             SceneManager.LoadSceneAsync(1);
@@ -208,7 +208,7 @@ public class SaveSystemMk2 : MonoBehaviour
     {
         
         // Check if the position tracker file exists
-        if (!File.Exists(Path.Combine(Application.dataPath + "/SaveFile/SaveData.xml")))
+        if (!File.Exists(Path.Combine(Application.persistentDataPath, "SaveData.xml")))
         {
             Debug.Log("Position Tracker File Not Found. Loading new game.");
             SceneManager.LoadSceneAsync(1);
