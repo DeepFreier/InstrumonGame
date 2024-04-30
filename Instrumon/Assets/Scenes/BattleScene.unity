@@ -1767,6 +1767,7 @@ GameObject:
   - component: {fileID: 315521747}
   - component: {fileID: 315521744}
   - component: {fileID: 315521743}
+  - component: {fileID: 315521748}
   m_Layer: 5
   m_Name: BattleCanvas
   m_TagString: Untagged
@@ -1897,6 +1898,24 @@ MonoBehaviour:
   atkList: {fileID: 1474609456}
   monList: {fileID: 1813290065}
   monBackBtn: {fileID: 1833478713}
+  saveSystem: {fileID: 315521748}
+--- !u!114 &315521748
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 315521742}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29fe81f8072c93748a527655c67f74c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SD:
+    PlayerPosx: 0
+    PlayerPosy: 0
+    Flag: 1
+    MonHealth: 
 --- !u!1 &327407177
 GameObject:
   m_ObjectHideFlags: 0

@@ -25,8 +25,6 @@ public class ButtonUpdater : MonoBehaviour
     //public GameObject summaryButton3;
     //public GameObject summaryButton4;
 
-    public PartyBase playerParty;
-
     private void Start()
     {
         UpdateInstrumonNames();
@@ -34,7 +32,7 @@ public class ButtonUpdater : MonoBehaviour
 
     public void UpdateInstrumonNames()
     {
-        var instrumons = playerParty.GetInstrumons();
+        var instrumons = ProgressFlags.ReturnPlyrPrty();
 
         if (instrumons.Count >= 1)
         {
