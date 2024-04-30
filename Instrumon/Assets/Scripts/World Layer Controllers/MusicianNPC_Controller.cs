@@ -26,6 +26,8 @@ public class MusicianNPC_Controller : MonoBehaviour , Interactable
 
     public static bool Dialoguedone;
 
+    public SaveSystemMk2 saveSystem;
+
    
     public void Interact()
     {
@@ -37,6 +39,7 @@ public class MusicianNPC_Controller : MonoBehaviour , Interactable
             StartCoroutine(DialogueManager.Instance.ShowDialogue(dialog));
             DialogueManager.Instance.OnHideDialogue += () =>
             {
+                saveSystem.Save();
                 SceneManager.LoadScene(2);
             };
             

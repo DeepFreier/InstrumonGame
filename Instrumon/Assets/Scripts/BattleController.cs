@@ -16,6 +16,37 @@ public class BattleController : MonoBehaviour
     public Image playerHealthBar;
     public TextMeshProUGUI playerCurrentHealthText;
     public TextMeshProUGUI playerTotalHealthText;
+    //attackbuttons
+    public TextMeshProUGUI atk1text;
+    public TextMeshProUGUI atk2text;
+    public TextMeshProUGUI atk3text;
+    public TextMeshProUGUI atk4text;
+    //monbuttons
+    public TextMeshProUGUI mon1text;
+    public TextMeshProUGUI mon2text;
+    public TextMeshProUGUI mon3text;
+    public TextMeshProUGUI mon4text;
+    //Stat screen variables
+    public TextMeshProUGUI statPlayerName;
+    public Image statPlayerSprite;
+    public TextMeshProUGUI statPlayerHPText;
+    public TextMeshProUGUI statPlayerAtkText;
+    public TextMeshProUGUI statPlayerSpdText;
+    public TextMeshProUGUI statMove1Name;
+    public TextMeshProUGUI statMove2Name;
+    public TextMeshProUGUI statMove3Name;
+    public TextMeshProUGUI statMove4Name;
+    public TextMeshProUGUI statMove1Pow;
+    public TextMeshProUGUI statMove2Pow;
+    public TextMeshProUGUI statMove3Pow;
+    public TextMeshProUGUI statMove4Pow;
+
+    public Image statOppSprite;
+    public TextMeshProUGUI statOppName;
+    public TextMeshProUGUI statOppHPText;
+    public TextMeshProUGUI statOppAtkText;
+    public TextMeshProUGUI statOppSpdText;
+    public TextMeshProUGUI statOppDescriptionText;
 
     //cpu visual variables
     public SpriteRenderer oppSpriteHolder;
@@ -27,12 +58,12 @@ public class BattleController : MonoBehaviour
     //player variables
     public static List<Instrumon> playerParty = ProgressFlags.ReturnPlyrPrty();
     public static Instrumon playerCurrentMon = playerParty[0];
-    public bool playerDeathSwitchFlag = false;
+    bool playerDeathSwitchFlag = false;
     
     //cpu variables
     public static List<Instrumon> oppParty = ProgressFlags.ReturnOppPrty();
     public static Instrumon oppCurrentMon = oppParty[0];
-    public int oppCurrentIndex = 0;
+    int oppCurrentIndex = 0;
 
     //button variables
     public GameObject atkList;
@@ -42,6 +73,8 @@ public class BattleController : MonoBehaviour
 
     //Audio Manager
     BattleAudioManager audioManager;
+
+    public SaveSystemMk2 saveSystem;
 
 
     // Start is called before the first frame update
@@ -102,16 +135,47 @@ public class BattleController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
-    }
+        //display correct move names
+        atk1text.text = playerCurrentMon.Base.Moves[0].Base.MoveName;
+        atk2text.text = playerCurrentMon.Base.Moves[1].Base.MoveName;
+        atk3text.text = playerCurrentMon.Base.Moves[2].Base.MoveName;
+        atk4text.text = playerCurrentMon.Base.Moves[3].Base.MoveName;
+
+        //display correct mon names
+        mon1text.text = playerParty[0].Base.instrumonName;
+        mon2text.text = playerParty[1].Base.instrumonName;
+        mon3text.text = playerParty[2].Base.instrumonName;
+        mon4text.text = playerParty[3].Base.instrumonName;
+
+        //display correct stats
+        statPlayerName.text = playerCurrentMon.Base.instrumonName;
+        statPlayerSprite.sprite = playerCurrentMon.Base.FrontSprite;
+        statPlayerHPText.text = playerCurrentMon.Base.MaxHP.ToString();
+        statPlayerAtkText.text = playerCurrentMon.Base.Attack.ToString();
+        statPlayerSpdText.text = playerCurrentMon.Base.Speed.ToString();
+        statMove1Name.text = playerCurrentMon.Base.Moves[0].Base.name;
+        statMove2Name.text = playerCurrentMon.Base.Moves[1].Base.name;
+        statMove3Name.text = playerCurrentMon.Base.Moves[2].Base.name;
+        statMove4Name.text = playerCurrentMon.Base.Moves[3].Base.name;
+        statMove1Pow.text = playerCurrentMon.Base.Moves[0].Base.Power.ToString();
+        statMove2Pow.text = playerCurrentMon.Base.Moves[1].Base.Power.ToString();
+        statMove3Pow.text = playerCurrentMon.Base.Moves[2].Base.Power.ToString();
+        statMove4Pow.text = playerCurrentMon.Base.Moves[3].Base.Power.ToString();
+
+        statOppName.text = oppCurrentMon.Base.instrumonName;
+        statOppSprite.sprite = oppCurrentMon.Base.FrontSprite;
+        statOppHPText.text = oppCurrentMon.Base.MaxHP.ToString();
+        statOppAtkText.text = oppCurrentMon.Base.Attack.ToString();
+        statOppSpdText.text = oppCurrentMon.Base.Speed.ToString(); ;
+        statOppDescriptionText.text = oppCurrentMon.Base.Description;
+}
 
     //is called when all of the opponent's mons die
     public IEnumerator winBattle()
     {
         descriptionText.text = "You win!";
         yield return new WaitForSeconds(3);
-        SceneManager.LoadScene(1);
-        ProgressFlags.UpdateFlag(ProgressFlags.Flag + 1);
+        saveSystem.LoadWithFlag(ProgressFlags.Flag + 1);
     }
 
     //is called when all of the player's mons die
@@ -119,7 +183,9 @@ public class BattleController : MonoBehaviour
     {
         descriptionText.text = "You lost...";
         yield return new WaitForSeconds(3);
-        SceneManager.LoadScene(1);
+        saveSystem.LoadWithPosition(96, -100.42);
+        GameObject player = GameObject.Find("Player");
+        player.GetComponent<PlayerController>().healparty();
     }
 
     //is called when player voluntarily switches mons
