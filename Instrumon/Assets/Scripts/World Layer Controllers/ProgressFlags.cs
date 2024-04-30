@@ -19,7 +19,34 @@ public class ProgressFlags : MonoBehaviour
     public static ProgressFlags Instance { get; private set; }
 
 
+    public static void updateOppParty()
+    {
+        if (Flag == 1)
+        {
+            GameObject opponent = GameObject.Find("SeadockFight_NPC");
+            opponentparty = opponent.GetComponent<MusicianNPC_Controller>().mnpcparty;
 
+        }
+        else if (Flag == 2)
+        {
+            GameObject opponent = GameObject.Find("FrankFight_NPC");
+            opponentparty = opponent.GetComponent<MusicianNPC_Controller>().mnpcparty;
+        }
+        else if (Flag == 3)
+        {
+            GameObject opponent = GameObject.Find("KarlFight_NPC");
+            opponentparty = opponent.GetComponent<MusicianNPC_Controller>().mnpcparty;
+        }
+        else if (Flag == 4)
+        {
+            GameObject opponent = GameObject.Find("JosephFight_NPC");
+            opponentparty = opponent.GetComponent<MusicianNPC_Controller>().mnpcparty;
+        }
+        else
+        {
+            opponentparty = new List<Instrumon>();
+        }
+    }
 
 
     private void Awake()
