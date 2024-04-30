@@ -82,6 +82,7 @@ public class SaveSystemMk2 : MonoBehaviour
             asyncLoad.completed += (_) =>
             {
                 GameObject playerObject = GameObject.FindGameObjectWithTag("Player");
+
                 playerObject.GetComponent<PlayerController>().UpdateParty();
                 playerObject.GetComponent<PlayerController>().healparty();
                 Debug.Log("Progress Flag:" + ProgressFlags.Flag);
@@ -99,10 +100,8 @@ public class SaveSystemMk2 : MonoBehaviour
             SaveDatabase OSD = serializer.Deserialize(stream) as SaveDatabase;
             PlayerPosn.x = OSD.PlayerPosx;
             PlayerPosn.y = OSD.PlayerPosy;
-            int Flag = OSD.Flag;
             Debug.Log("Player X:" + PlayerPosn.x);
             Debug.Log("Player Y:" + PlayerPosn.y);
-            Debug.Log("Flag:" + Flag);
             Debug.Log("Loading File");
             LoadPositionWithoutHealth(PlayerPosn, flag);
             stream.Close();
@@ -207,6 +206,7 @@ public class SaveSystemMk2 : MonoBehaviour
     }
     public void LoadPositionWithoutHealth(Vector2 PlayerPos, int ProFlag)
     {
+        
         // Check if the position tracker file exists
         if (!File.Exists(Path.Combine(Application.dataPath + "/SaveFile/SaveData.xml")))
         {
@@ -228,12 +228,13 @@ public class SaveSystemMk2 : MonoBehaviour
             // Check if player object is found
             if (playerObject != null)
             {
+                
                 Debug.Log("Loading Transform");
                 Transform player = playerObject.transform;
                 player.position = PlayerPos;
+                Debug.Log("ProFlag: " + ProFlag);
                 ProgressFlags.UpdateFlag(ProFlag);
-                int CurrFlag = ProgressFlags.GetFlag();
-                Debug.Log(CurrFlag);
+                Debug.Log(ProgressFlags.Flag);
             }
             else
             {
