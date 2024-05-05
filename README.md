@@ -46,3 +46,12 @@ Steps to compile the final product in Unity.
 * Click Build
 * Select a local save location
 * Navigate to where it is saved and test the build
+
+
+## MovementTesting Cameron Clark
+Steps to Run MovementTesting Test
+1.Open TestRunner in Window tab
+2.Select MovementTesting in PlayMode Testing
+3.Run Test
+4.Wait for Test to complete, should start the WorldLayer and have player move around
+5.Test complete, should pass all tests currently
