@@ -4,6 +4,20 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    // Testing variables
+    public bool istesting = false;
+    public bool testwalkable = false;
+
+    public void setistesting(bool test)
+    {
+        istesting = test;
+    }
+    public void testinput(float tx, float ty)
+    {
+        input.x = tx; 
+        input.y = ty; 
+    }
+
     // Movement variables
     public float moveSpeed;
     private bool isMoving;
@@ -66,7 +80,7 @@ public class PlayerController : MonoBehaviour
     // Handles player input and movement
     public void HandleUpdate()
     {
-        if (!isMoving && allowInput) // Process input only if not moving and input is allowed
+        if (!isMoving && allowInput && !istesting) // Process input only if not moving and input is allowed
         {
             // Store input from the player
             input.x = Input.GetAxisRaw("Horizontal");
@@ -109,6 +123,40 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.E))
         {
             Interact();
+        }
+
+        //testing movement
+        if (!isMoving && allowInput && istesting)
+        {
+            
+            // Stop the player from moving diagonally
+            if (input.x != 0) input.y = 0;
+
+            if (input != Vector2.zero)
+            {
+                // Set animator parameters
+                animator.SetFloat("moveX", input.x);
+                animator.SetFloat("moveY", input.y);
+
+                // Calculate target position
+                var targetPos = transform.position + new Vector3(input.x, input.y, 0);
+
+                // Move the player if the target position is walkable
+                if (IsWalkable(targetPos))
+                {
+                    StartCoroutine(Move(targetPos));
+                }
+
+                // Teleport the player if applicable
+                if (isTeleport(targetPos))
+                {
+                    var collider = Physics2D.OverlapCircle(targetPos, .2f, teleportLayer);
+                    if (collider != null)
+                    {
+                        collider.GetComponent<Teleporter>()?.Teleport();
+                    }
+                }
+            }
         }
     }
 
