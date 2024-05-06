@@ -56,13 +56,13 @@ public class BattleController : MonoBehaviour
     public TextMeshProUGUI oppTotalHealthText;
 
     //player variables
-    public static List<Instrumon> playerParty = ProgressFlags.ReturnPlyrPrty();
-    public static Instrumon playerCurrentMon = playerParty[0];
+    public static List<Instrumon> playerParty;
+    public static Instrumon playerCurrentMon;
     bool playerDeathSwitchFlag = false;
     
     //cpu variables
-    public static List<Instrumon> oppParty = ProgressFlags.ReturnOppPrty();
-    public static Instrumon oppCurrentMon = oppParty[0];
+    public static List<Instrumon> oppParty;
+    public static Instrumon oppCurrentMon;
     int oppCurrentIndex = 0;
 
     //button variables
@@ -83,7 +83,11 @@ public class BattleController : MonoBehaviour
         audioManager.StartInstrumonSongs();
         audioManager.MutePlayerSongs();
         audioManager.MuteOppSongs();
-      
+
+        playerParty = ProgressFlags.ReturnPlyrPrty();
+        playerCurrentMon = playerParty[0];
+        oppParty = ProgressFlags.ReturnOppPrty();
+        oppCurrentMon = oppParty[0];
 
         oppCurrentIndex = 0;
         playerDeathSwitchFlag = false;

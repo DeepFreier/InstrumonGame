@@ -48,10 +48,19 @@ Steps to compile the final product in Unity.
 * Navigate to where it is saved and test the build
 
 
-## MovementTesting Cameron Clark
+### MovementTesting Cameron Clark
 Steps to Run MovementTesting Test
-1.Open TestRunner in Window tab
-2.Select MovementTesting in PlayMode Testing
-3.Run Test
-4.Wait for Test to complete, should start the WorldLayer and have player move around
-5.Test complete, should pass all tests currently
+* Open TestRunner in Window tab
+* Select MovementTesting in PlayMode Testing
+* Run Test
+* Wait for Test to complete, should start the WorldLayer and have player move around
+* Test complete, should pass all tests currently
+
+### BattleSwitchTest Michael Freier
+Steps to run the battle switching test:
+* Open TestRunner from Window > General > TestRunner
+* Select PlayMode Tab at the top of the new window
+* Highlight BattleSwitchTest
+* Click Run Selected near the top
+* Wait for the test to run
+* Once the test completes, it should pass

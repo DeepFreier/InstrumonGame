@@ -161,7 +161,7 @@ public class PlayerController : MonoBehaviour
     }
 
     // Handles player interaction with objects
-    private void Interact()
+    public void Interact()
     {
         // Calculate interaction position based on player's facing direction
         var facingDir = new Vector3(animator.GetFloat("moveX"), animator.GetFloat("moveY"));
