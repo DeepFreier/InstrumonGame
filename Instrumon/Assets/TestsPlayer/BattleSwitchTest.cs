@@ -47,8 +47,10 @@ public class BattleSwitchTest
         //tests switching by triggering the function that is called when the mon2 button is pressed
         battle.OnMon2();
         yield return new WaitForSeconds(2);
+        //Asserts that the switch has actually occurred
         Assert.IsTrue(BattleController.playerCurrentMon == BattleController.playerParty[1], "Player current mon is not as expected after switching");
         yield return new WaitForSeconds(1f);
+        //The visuals shown are irrelevant because if the object is correct, the visuals will reflect that
 
         // You can add similar tests for other scenarios...
 
