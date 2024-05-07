@@ -7,7 +7,7 @@ Created by:
 * David Hill
 
 ## Final build of the game
-Google Drive: https://drive.google.com/file/d/1aAFBjpJtd9-51hRSZNUU2gyVQMcOn3Bm/view?usp=drive_link
+Google Drive: https://drive.google.com/drive/folders/1zxxkBxojzUbdnd3MVORZQk5T9FjkLNJ1?usp=sharing
 
 ## Steps to build the game for developers:
 * Pull this repository onto your local machine
