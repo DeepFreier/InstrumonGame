@@ -64,3 +64,12 @@ Steps to run the battle switching test:
 * Click Run Selected near the top
 * Wait for the test to run
 * Once the test completes, it should pass
+
+### PauseMenuTest Patrick Hernandez
+Steps to run the battle switching test:
+* Open TestRunner from Window > General > TestRunner
+* Select PlayMode Tab at the top of the new window
+* Highlight PauseMenuTest
+* Click Run Selected near the top
+* Wait for the test to run
+* Once the test completes, it should pass
