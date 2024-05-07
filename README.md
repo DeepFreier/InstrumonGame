@@ -71,3 +71,12 @@ Steps to run the battle switching test:
 * Run Selected Test
 * Wait for test to run and complete, it will go through each scene and test the volume in each
 * Test Completed, All test should pass
+
+### PauseMenuTest Patrick Hernandez
+Steps to run the battle switching test:
+* Open TestRunner from Window > General > TestRunner
+* Select PlayMode Tab at the top of the new window
+* Highlight PauseMenuTest
+* Click Run Selected near the top
+* Wait for the test to run
+* Once the test completes, it should pass
