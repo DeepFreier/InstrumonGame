@@ -82,7 +82,7 @@ Steps to run the battle switching test:
 * Wait for the test to run
 * Once the test completes, it should pass
 
-###SaveTest Brandon Martin
+### SaveTest Brandon Martin
 Steps to run the save test:
 * Open TestRunner from Window > General > TestRunner
 * Select PlayMode Tab at the top of the new window
