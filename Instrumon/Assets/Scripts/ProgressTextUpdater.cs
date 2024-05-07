@@ -34,7 +34,7 @@ public class ProgressTextUpdater : MonoBehaviour
         }
         else if (ProgressFlags.GetFlag() == 5)
         {
-            progressText.text = $"The player has defeated all {(ProgressFlags.GetFlag() - 1).ToString()} musicians. Congradulations! You have beat the game!";
+            progressText.text = $"The player has defeated all {(ProgressFlags.GetFlag() - 1).ToString()} musicians. Congratulations! You have beat the game!";
         }
     }
 }
