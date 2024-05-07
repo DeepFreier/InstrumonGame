@@ -64,3 +64,10 @@ Steps to run the battle switching test:
 * Click Run Selected near the top
 * Wait for the test to run
 * Once the test completes, it should pass
+
+### MusicVolumeTest David Hill
+* Open TestRunner in the Window Tab
+* Select "MusicTest" in the Play mode testing
+* Run Selected Test
+* Wait for test to run and complete, it will go through each scene and test the volume in each
+* Test Completed, All test should pass
