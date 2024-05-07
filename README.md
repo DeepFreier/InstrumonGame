@@ -66,6 +66,7 @@ Steps to run the battle switching test:
 * Once the test completes, it should pass
 
 ### MusicVolumeTest David Hill
+Steps to run the music volume test:
 * Open TestRunner in the Window Tab
 * Select "MusicTest" in the Play mode testing
 * Run Selected Test
@@ -77,6 +78,15 @@ Steps to run the battle switching test:
 * Open TestRunner from Window > General > TestRunner
 * Select PlayMode Tab at the top of the new window
 * Highlight PauseMenuTest
+* Click Run Selected near the top
+* Wait for the test to run
+* Once the test completes, it should pass
+
+###SaveTest Brandon Martin
+Steps to run the save test:
+* Open TestRunner from Window > General > TestRunner
+* Select PlayMode Tab at the top of the new window
+* Highlight SaveTest
 * Click Run Selected near the top
 * Wait for the test to run
 * Once the test completes, it should pass
