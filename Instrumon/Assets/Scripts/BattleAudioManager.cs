@@ -3,13 +3,16 @@ using UnityEngine;
 
 public class BattleAudioManager : MonoBehaviour {
 
+    // Getting the main drum track
     [Header("-------Drum Track---------")]
     public AudioSource battleMusic;
 
+    
     [Header("-----Back Up Tracks---------")]
     public AudioSource instrumonSongs;
     public AudioSource oppInstrumonSongs;
 
+    // Getting the audio sources for the player
     [Header("--------Player Audio Source---------")]
     public AudioSource clarinetInstrumon;
     public AudioSource fluteInstrumon;
@@ -25,6 +28,7 @@ public class BattleAudioManager : MonoBehaviour {
     public AudioSource trumpetInstrumon;
     public AudioSource cymbalInstrumon;
 
+    //Getting the audio sources for the opponents
     [Header("-------Opponent Audio Source--------")]
     public AudioSource oppClarinetInstrumon;
     public AudioSource oppFluteInstrumon;
@@ -40,7 +44,7 @@ public class BattleAudioManager : MonoBehaviour {
     public AudioSource oppTrumpetInstrumon;
     public AudioSource oppCymbalInstrumon;
 
-
+    // Getting all Audio clips
     [Header("--------Audio Clip------------")]
     public AudioClip drumLoop;
     public AudioClip violinIntro;
@@ -69,7 +73,7 @@ public class BattleAudioManager : MonoBehaviour {
     public AudioClip xylophoneSong;
     public AudioClip cymbalSong;
 
-
+    // Initiallizes the battle music
     private void Start()
     {
         battleMusic = GetComponent<AudioSource>();
@@ -91,6 +95,7 @@ public class BattleAudioManager : MonoBehaviour {
 
     }
 
+    // This starts all Instrumon songs (player AND opponent) to be played at the same time
     public void StartInstrumonSongs()
     {
         //starting player songs
@@ -125,7 +130,10 @@ public class BattleAudioManager : MonoBehaviour {
         oppCymbalInstrumon.PlayScheduled(AudioSettings.dspTime + .05f);
 
     }
-
+    /**
+     * This method mutes all player songs and unmutes the appropriate audio source depending on the active instrumon on the scene.
+     * This method is recalled again after an instrumon switches or dies
+     */
     public void MutePlayerSongs()
     {
         //Muting Player audio clips
@@ -184,7 +192,10 @@ public class BattleAudioManager : MonoBehaviour {
         }
     }
 
-
+    /**
+    * This method mutes all opponents songs and unmutes the appropriate audio source depending on the active instrumon on the scene.
+    * This method is recalled again after an instrumon switches or dies
+    */
     public void MuteOppSongs()
     {
         //Muting opponent audio clips
