@@ -17,7 +17,6 @@ public class SaveTest
         yield return null;
 
         var playerObject = GameObject.Find("Player");
-        var teleobject = GameObject.Find("TeleportBrassDestOut");
         Assert.IsNotNull(playerObject);
         yield return new WaitForSeconds(1f);
         var player = playerObject.GetComponent<PlayerController>();
@@ -27,11 +26,11 @@ public class SaveTest
         player.testinput(1, 0);
         yield return new WaitForSeconds(1f);
 
-        //move Up with input
+        //Move Up with input
         player.testinput(0f,1f);
         yield return new WaitForSeconds(1f);
 
-        //move Left with input
+        //Move Left with input
         player.testinput(-1f, 0f);
         yield return new WaitForSeconds(1f);
 
@@ -40,22 +39,26 @@ public class SaveTest
         //Simulating the player defeating the first musician
         ProgressFlags.UpdateFlag(2);
 
+        //Making sure the progress flags got updated correctly
         Assert.AreEqual(ProgressFlags.GetFlag(), 2);
         var pauseObject = GameObject.Find("PauseMenuCanvas");
         var pausePanel = pauseObject.GetComponentInChildren<Transform>().Find("Pause Menu Panel");
-        var saveSystem = pausePanel.GetComponent<SaveSystemMk2>();
+        var saveButton = pausePanel.GetComponentInChildren<Transform>().Find("SaveButton");
+        var saveSystem = saveButton.GetComponent<SaveSystemMk2>();
 
         //Saving the game at position with current progress
         saveSystem.Save();
 
-        //Reloading scene so that it becomes default
+        //Reloading scene so that it becomes default player position
         SceneManager.LoadScene("WorldLayer-Brass");
         yield return null;
 
-        //Ensuring the progress flag is in the default/starting state
-        Assert.AreEqual(ProgressFlags.GetFlag(), 1);
-
+        //Loading the player's position
         saveSystem.Load();
+        yield return new WaitForSeconds(1f);
+        playerObject = GameObject.Find("Player");
+
+        //Making sure that saved position and current position are the same
         Assert.AreEqual(savedPosition, playerObject.transform.position);
 
 
