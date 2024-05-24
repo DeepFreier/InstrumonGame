@@ -7,8 +7,8 @@ Created by:
 * David Hill
 
 ## Final build of the game
-Google Drive: https://drive.google.com/file/d/1z4-GK5so_wIZgaNUBUZYL8w9SLT8pBzy/view?usp=sharing
-Note: if your display is not 16:9 aspect ratio, you'll need to change your display settings to a resolution that is 16:9 before playing.
+* Google Drive: https://drive.google.com/file/d/1z4-GK5so_wIZgaNUBUZYL8w9SLT8pBzy/view?usp=sharing
+* Note: if your display is not 16:9 aspect ratio, you'll need to change your display settings to a resolution that is 16:9 before playing.
 
 ## Steps to build the game for developers:
 * Pull this repository onto your local machine
